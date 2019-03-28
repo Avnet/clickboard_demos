@@ -1,0 +1,5 @@
+﻿  main.c:68:10: fatal error: sys/syscall.h: No such file or directory
+   #include <sys/syscall.h>
+            ^~~~~~~~~~~~~~~
+  compilation terminated.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Application Type\Linux\1.0\AzureSphere.targets(105,5): error MSB6006: "arm-poky-linux-musleabi-gcc.exe" exited with code 1.

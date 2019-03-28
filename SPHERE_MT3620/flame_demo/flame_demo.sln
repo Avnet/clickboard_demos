@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flame_demo", "flame_demo\flame_demo.vcxproj", "{E8E39C03-C4ED-4DBE-915D-C7C893362AB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Release|ARM = Release|ARM
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8E39C03-C4ED-4DBE-915D-C7C893362AB5}.Debug|ARM.ActiveCfg = Debug|ARM
+		{E8E39C03-C4ED-4DBE-915D-C7C893362AB5}.Debug|ARM.Build.0 = Debug|ARM
+		{E8E39C03-C4ED-4DBE-915D-C7C893362AB5}.Release|ARM.ActiveCfg = Release|ARM
+		{E8E39C03-C4ED-4DBE-915D-C7C893362AB5}.Release|ARM.Build.0 = Release|ARM
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D3308CF-254A-4AE3-B5F3-49CFB25578E9}
+	EndGlobalSection
+EndGlobal

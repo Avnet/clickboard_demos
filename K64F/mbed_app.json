@@ -1,0 +1,53 @@
+{
+    "macros": [
+        "DEFAULT_APN=\"m2m-east.telus.iot\"",
+        "NDEBUG=1",
+        "BG96_LIBRARY_READ_TIMEOUTMS=30000"
+    ],
+    "config": {
+        "config_comments": "Add the to the macros section above to enable memory stats output",
+        "heap_stats"  : "MBED_HEAP_STATS_ENABLED",
+        "stack_stats" : "MBED_STACK_STATS_ENABLED",
+        "thread_stats": "MBED_THREAD_STATS_ENABLED",
+        "network-interface":{
+            "help": "Options are ETHERNET, CELLULAR_WNC14A2A, CELLULAR_BG96",
+            "value": "CELLULAR_BG96"
+        },
+        "button_active_state": {
+            "help": "define the active state of the user pushbutton, either ActiveHigh or ActiveLow",
+            "value": "ActiveHigh"
+        },
+        "teluskit": {
+            "help" : "if this kit is a Telus IoT Kit, set this to 1, otherwise to 0",
+            "value": 1
+        },
+        "iksversion": {
+            "help" : "define the sensor board used either IKS01A2 (value=2) or IKS01A1 (value=1)",
+            "value": 2
+        },
+        "mbedtls_custom_config": {
+            "macro_name": "MBEDTLS_USER_CONFIG_FILE",
+            "value": "\"azure_mbedtls_config.h\""
+        },
+        "bg96_debug": {
+            "help" : "enable or disable WNC debug messages.",
+            "value": 0
+        },
+        "bg96_debug_setting": {
+            "help" : "bit value 1 and/or 2 enable WncController debug output, bit value 4 enables mbed driver debug output.",
+            "value": "0x0c"
+        }
+    },
+    "target_overrides": {
+        "*": {
+            "platform.stdio-convert-newlines": true,
+            "platform.stdio-baud-rate": 115200,
+            "platform.stdio-flush-at-exit": false
+         },
+         "K64F": {
+            "button_active_state": "ActiveLow"
+         },
+         "NUCLEO_L496ZG": {
+         }
+    }
+}
