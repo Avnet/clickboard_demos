@@ -25,7 +25,7 @@ libvl53l0x_a_CFLAGS = \
            -Wl,--unresolved-symbols=ignore-in-shared-libs \
            -DTRUE=1 -DFALSE=0 -DUSE_I2C_2V8
 
-libvl53l0x_a_SOURCES = ../../../click/LIGHTRANGER/core/src/vl53l0x_api_calibration.c \
+libvl53l0x_a_SOURCES = ../../../clickmodule/LIGHTRANGER/core/src/vl53l0x_api_calibration.c \
     ../../../clickmodule/LIGHTRANGER/core/src/vl53l0x_api_core.c \
     ../../../clickmodule/LIGHTRANGER/core/src/vl53l0x_api_ranging.c \
     ../../../clickmodule/LIGHTRANGER/core/src/vl53l0x_api_strings.c \
