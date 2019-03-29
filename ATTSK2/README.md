@@ -1,6 +1,8 @@
 
 # AT&T Starter Kit 2 using the LTE IoT Breakout Carrier
-This code assumes you are using a http://cloudconnectkits.org/product/lte-starter-kit-2 in conjunction with http://cloudconnectkits.org/product/lte-iot-breakout-carrier.
+This code assumes you are using:
+1. the Avnet AT&T Starter Kit 2 (http://cloudconnectkits.org/product/lte-starter-kit-2)
+2. the Avnet LTE IoT Breakout Carrier (http://cloudconnectkits.org/product/lte-iot-breakout-carrier)
 
 ## Build and Execute the demo programs:
 In all subdirectories, the following steps must be performed to build the executable image.
