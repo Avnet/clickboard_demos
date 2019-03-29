@@ -24,14 +24,14 @@ After the executable image has been generated, push it tothe CUSTAPP directory (
 it (**adb shell "/CUSTAPP/XYZ"**) in an adb shell.
 
 1. click_demo
-Two executable images are generated: ‘_cdemo_’ (C example), ‘_cppdemo_’ (C++ example). 
+Two executable images are generated: ‘_c_demo_’ (C example), ‘_cpp_demo_’ (C++ example). 
 
-* _cdemo_ (the 'C' example) consists of the following files:
+* _c_demo_ (the 'C' example) consists of the following files:
   * c_demo.c     - Main program and supporting functions such as I2C and SPI routines
   * oled_test.c  - Drives a series of OLED tests
-  * libclick.a   - Library containing code for Click modules
+  * libclick.a   - Library containing code for Click modules. This is created when make is run.
 
-* _cppdemo_ (the 'C++' example) consists of:
+* _cpp_demo_ (the 'C++' example) consists of:
   * demo.cpp           - Main program
   * oled_test.c        - Drives a series of OLED tests
   * i2c_interface.cpp  - class for managing I2C
