@@ -1,3 +1,4 @@
 [submodule "clickmodule"]
 	path = clickmodule
 	url = https://github.com/jflynn129/clickmodule
+        branch = master
