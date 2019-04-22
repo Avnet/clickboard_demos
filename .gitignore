@@ -1,7 +1,9 @@
+*.o
+*.a
+*.tlog
 ATTSK2/*/aclocal.m4
 ATTSK2/*/arm-oe-linux-gnueabi-libtool
 ATTSK2/*/autom4te.cache/
-ATTSK2/*/*.o
 ATTSK2/*/c_demo
 ATTSK2/*/c_demo
 ATTSK2/*/compile

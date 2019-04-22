@@ -49,13 +49,13 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalOptions>-Werror=implicit-function-declaration %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">C:\Users\043674\source\repos\jflynn129\clickmodules\VL53L0X\platform\inc;C:\Users\043674\source\repos\jflynn129\clickmodules\VL53L0X\core\inc;C:\Users\043674\source\repos\jflynn129\clickmodules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">C:\Users\043674\source\repos\jflynn129\click_demos\clickmodule\TEMP_HUM;C:\Users\043674\source\repos\jflynn129\click_demos\clickmodule\BAROMETER;C:\Users\043674\source\repos\jflynn129\click_demos\clickmodule\OLED-B;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">TurnOffAllWarnings</WarningLevel>
     </ClCompile>
     <Link>
       <LibraryDependencies>applibs;pthread;gcc_s;c;ClickLib</LibraryDependencies>
       <AdditionalOptions>-Wl,--no-undefined -nodefaultlibs %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">C:\Users\043674\source\repos\jflynn129\clickmodules\SPHERE_MT3620\click_demo\Library1\bin\ARM\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">C:\Users\043674\source\repos\jflynn129\click_demos\SPHERE_MT3620\click_demo\Library1\bin\ARM\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
 </Project>

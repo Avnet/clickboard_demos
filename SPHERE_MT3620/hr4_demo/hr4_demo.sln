@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hr4_demo", "hr4_demo\hr4_demo.vcxproj", "{FF626F41-A679-4BF0-928D-AF5E58EC6510}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F2A00D17-E4FE-4FE6-89BA-BD26ECC40077} = {F2A00D17-E4FE-4FE6-89BA-BD26ECC40077}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClickLib", "Library1\Library1.vcxproj", "{F2A00D17-E4FE-4FE6-89BA-BD26ECC40077}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Release|ARM = Release|ARM
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF626F41-A679-4BF0-928D-AF5E58EC6510}.Debug|ARM.ActiveCfg = Debug|ARM
+		{FF626F41-A679-4BF0-928D-AF5E58EC6510}.Debug|ARM.Build.0 = Debug|ARM
+		{FF626F41-A679-4BF0-928D-AF5E58EC6510}.Release|ARM.ActiveCfg = Release|ARM
+		{FF626F41-A679-4BF0-928D-AF5E58EC6510}.Release|ARM.Build.0 = Release|ARM
+		{F2A00D17-E4FE-4FE6-89BA-BD26ECC40077}.Debug|ARM.ActiveCfg = Debug|ARM
+		{F2A00D17-E4FE-4FE6-89BA-BD26ECC40077}.Debug|ARM.Build.0 = Debug|ARM
+		{F2A00D17-E4FE-4FE6-89BA-BD26ECC40077}.Release|ARM.ActiveCfg = Release|ARM
+		{F2A00D17-E4FE-4FE6-89BA-BD26ECC40077}.Release|ARM.Build.0 = Release|ARM
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B5AF34C4-6F25-4E57-96FC-3E6B6CB5D103}
+	EndGlobalSection
+EndGlobal

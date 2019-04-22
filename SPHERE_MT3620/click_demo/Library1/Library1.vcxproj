@@ -11,17 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Avnet_GFX.h" />
-    <ClInclude Include="..\..\..\barometer.h" />
-    <ClInclude Include="..\..\..\hts221.h" />
-    <ClInclude Include="..\..\..\oledb_ssd1306.h" />
+    <ClCompile Include="..\..\..\clickmodule\BAROMETER\barometer.c" />
+    <ClCompile Include="..\..\..\clickmodule\OLED-B\Avnet_GFX.c" />
+    <ClCompile Include="..\..\..\clickmodule\OLED-B\glcdfont.c" />
+    <ClCompile Include="..\..\..\clickmodule\OLED-B\oledb_ssd1306.c" />
+    <ClCompile Include="..\..\..\clickmodule\TEMP_HUM\hts221.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Avnet_GFX.c" />
-    <ClCompile Include="..\..\..\barometer.c" />
-    <ClCompile Include="..\..\..\glcdfont.c" />
-    <ClCompile Include="..\..\..\hts221.c" />
-    <ClCompile Include="..\..\..\oledb_ssd1306.c" />
+    <ClInclude Include="..\..\..\clickmodule\BAROMETER\barometer.h" />
+    <ClInclude Include="..\..\..\clickmodule\OLED-B\Avnet_GFX.h" />
+    <ClInclude Include="..\..\..\clickmodule\OLED-B\oledb_ssd1306.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2ae72b72-3367-46e7-b4f8-d2e1389ca3f7}</ProjectGuid>
@@ -57,7 +56,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalOptions>-Werror=implicit-function-declaration %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">C:\Users\043674\source\repos\jflynn129\clickmodules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">C:\Users\043674\source\repos\jflynn129\click_demos\clickmodule\TEMP_HUM;C:\Users\043674\source\repos\jflynn129\click_demos\clickmodule\BAROMETER;C:\Users\043674\source\repos\jflynn129\click_demos\clickmodule\OLED-B;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">TurnOffAllWarnings</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>

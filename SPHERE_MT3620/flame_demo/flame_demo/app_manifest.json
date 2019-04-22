@@ -8,7 +8,7 @@
     "AllowedConnections": [],
     "AllowedTcpServerPorts": [],
     "AllowedUdpServerPorts": [],
-    "Gpio": [],
+    "Gpio": [2,42],
     "Uart": [],
     "I2cMaster": [],
     "SpiMaster": [],

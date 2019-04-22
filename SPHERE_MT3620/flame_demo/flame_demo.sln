@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flame_demo", "flame_demo\flame_demo.vcxproj", "{E8E39C03-C4ED-4DBE-915D-C7C893362AB5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{87143164-367E-4266-94DA-B0F58FD4B7CA} = {87143164-367E-4266-94DA-B0F58FD4B7CA}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClickLib", "ClickLib\ClickLib.vcxproj", "{87143164-367E-4266-94DA-B0F58FD4B7CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{E8E39C03-C4ED-4DBE-915D-C7C893362AB5}.Debug|ARM.Build.0 = Debug|ARM
 		{E8E39C03-C4ED-4DBE-915D-C7C893362AB5}.Release|ARM.ActiveCfg = Release|ARM
 		{E8E39C03-C4ED-4DBE-915D-C7C893362AB5}.Release|ARM.Build.0 = Release|ARM
+		{87143164-367E-4266-94DA-B0F58FD4B7CA}.Debug|ARM.ActiveCfg = Debug|ARM
+		{87143164-367E-4266-94DA-B0F58FD4B7CA}.Debug|ARM.Build.0 = Debug|ARM
+		{87143164-367E-4266-94DA-B0F58FD4B7CA}.Release|ARM.ActiveCfg = Release|ARM
+		{87143164-367E-4266-94DA-B0F58FD4B7CA}.Release|ARM.Build.0 = Release|ARM
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
