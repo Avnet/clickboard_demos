@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "click_demo", "click_demo\click_demo.vcxproj", "{F4F61A97-E848-4213-8818-E7234C0AA5CB}"
+        ProjectSection(ProjectDependencies) = postProject
+                {2AE72B72-3367-46E7-B4F8-D2E1389CA3F7} = {2AE72B72-3367-46E7-B4F8-D2E1389CA3F7}
+        EndProjectSection
+
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClickLib", "Library1\Library1.vcxproj", "{2AE72B72-3367-46E7-B4F8-D2E1389CA3F7}"
 EndProject
