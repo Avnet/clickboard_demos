@@ -55,7 +55,7 @@
     <Link>
       <LibraryDependencies>applibs;pthread;gcc_s;c;ClickLib</LibraryDependencies>
       <AdditionalOptions>-Wl,--no-undefined -nodefaultlibs %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">C:\Users\043674\source\repos\jflynn129\click_demos\SPHERE_MT3620\click_demo\Library1\bin\ARM\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\Library1\bin\ARM\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
 </Project>
