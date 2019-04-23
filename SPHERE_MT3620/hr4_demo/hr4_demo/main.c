@@ -159,8 +159,7 @@ int main(int argc, char *argv[])
 			average_spo2 += n_spo2;
 			nbr_readings++;
 		}
-		else
-			Log_Debug("???\n");
+
 		gettimeofday(&time_now, NULL);
 	}
 
