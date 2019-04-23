@@ -61,7 +61,7 @@ void init(void) {
 
 int read_i2c(uint8_t addr, uint16_t count, uint8_t* ptr)
 {
-	int r = I2CMaster_WriteThenRead(i2cFd, MAX30102_SAD, &addr, sizeof(addr), ptr, count);
+	int r = I2CMaster_WriteThenRead(i2cFd, MAX30101_SAD, &addr, sizeof(addr), ptr, count);
 	if( r == -1)
 		Log_Debug("ERROR: I2CMaster_Writer: errno=%d (%s)\n", errno, strerror(errno));
 	return r;
@@ -75,7 +75,7 @@ void write_i2c(uint8_t addr, uint16_t count, uint8_t* ptr)
 	buff[0] = addr;
 	buff[1] = *ptr;
 
-	int r = I2CMaster_Write(i2cFd, MAX30102_SAD, buff, 2);
+	int r = I2CMaster_Write(i2cFd, MAX30101_SAD, buff, 2);
 	if( r == -1 )
 		Log_Debug("ERROR: I2CMaster_Writer: errno=%d (%s)\n", errno, strerror(errno));
 }
