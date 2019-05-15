@@ -1,4 +1,4 @@
 [submodule "clickmodule"]
 	path = clickmodule
-	url = https://github.com/jflynn129/clickmodule
+	url = https://github.com/Avnet/clickmodule
         branch = master
