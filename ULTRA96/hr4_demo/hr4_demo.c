@@ -26,8 +26,14 @@
 
 i2c_handle_t  i2c_handle = (i2c_handle_t)NULL;
 
-#define INTPIN_SOCKET1    GPIO_PIN_94
-#define INTPIN_SOCKET2    GPIO_PIN_7
+// Linux pin number to Xilinx pin numbers are weird and have a large
+// base number than can change between different releases of Linux
+#define MIO_BASE    338
+// EMIOs start after MIO and there is a fixed offset of 78 for ZYNQ US+
+#define EMIO_BASE   (MIO_BASE+78)
+
+#define SOCKET1_INT    (EMIO_BASE+8)  // HD_GPIO_8
+#define SOCKET2_INT    (EMIO_BASE+15) // HD_GPIO_15
 
 gpio_handle_t intPin; 
 
