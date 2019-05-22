@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>flame_demo</name>
-	<comment></comment>
+	<name>tof_demo</name>
+	<comment>Created by SDK v2018.3</comment>
 	<projects>
-		<project>clickmodules</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

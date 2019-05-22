@@ -14,9 +14,12 @@
 #include <time.h>
 #include <sys/un.h>
 #include <sys/syscall.h>
+#include <sys/socket.h>
 #include <sys/time.h>
+#include <linux/i2c.h>
+#include <linux/i2c-dev.h>
 
-#include <hwlib/hwlib.h>
+#include <sys/ioctl.h>
 
 #include "max30102.h"
 #include "algorithm_by_RF.h"
@@ -24,7 +27,15 @@
 #define PROXIMITY_THRESHOLD  32000
 #define delay(x)             (usleep(x*1000))   //macro to provide ms pauses
 
-i2c_handle_t  i2c_handle = (i2c_handle_t)NULL;
+// Linux pin number to Xilinx pin numbers are weird and have a large
+// base number than can change between different releases of Linux
+#define MIO_BASE    338
+// EMIOs start after MIO and there is a fixed offset of 78 for ZYNQ US+
+#define EMIO_BASE   (MIO_BASE+78)
+// RST pin Click Mezzanine site 1 is EMIO2 is so address of HD_GPIO_7 is 2
+#define CLICK1_INT  (EMIO_BASE+2)
+// RST pin Click Mezzanine site 2 is EMIO7 is so address of HD_GPIO_14 is 9
+#define CLICK2_INT  (EMIO_BASE+9)
 
 // Linux pin number to Xilinx pin numbers are weird and have a large
 // base number than can change between different releases of Linux
@@ -35,36 +46,154 @@ i2c_handle_t  i2c_handle = (i2c_handle_t)NULL;
 #define SOCKET1_INT    (EMIO_BASE+8)  // HD_GPIO_8
 #define SOCKET2_INT    (EMIO_BASE+15) // HD_GPIO_15
 
-gpio_handle_t intPin; 
+static void __gpioOpen(int gpio)
+{
+    char buf[5];
+    int fd = open("/sys/class/gpio/export", O_WRONLY);
+    sprintf(buf, "%d", gpio); 
+    write(fd, buf, strlen(buf));
+    close(fd);
+}
 
-void init(void) {
-    gpio_init(INTPIN_SOCKET2, &intPin);
-    gpio_dir(intPin, GPIO_DIR_INPUT);
-    i2c_bus_init(I2C_BUS_I, &i2c_handle);
+static void __gpioClose(int gpio)
+{
+    int fd;
+    char buf[5];
+
+    sprintf(buf, "%d", gpio); 
+    fd = open("/sys/class/gpio/unexport", O_WRONLY);
+    write(fd, buf, strlen(buf));
+    close(fd);
+}
+
+static void __gpioDirection(int gpio, int direction) // 1 for output, 0 for input
+{
+    char buf[50];
+
+    sprintf(buf, "/sys/class/gpio/gpio%d/direction", gpio);
+    int fd = open(buf, O_WRONLY);
+
+    if (direction)
+        write(fd, "out", 3);
+    else
+        write(fd, "in", 2);
+    close(fd);
+}
+
+#if 0
+static void __gpioSet(int gpio, int value)
+{
+    char buf[50];
+    sprintf(buf, "/sys/class/gpio/gpio%d/value", gpio);
+    int fd = open(buf, O_WRONLY);
+
+    sprintf(buf, "%d", value);
+    write(fd, buf, 1);
+    close(fd);
+}
+
+#endif
+
+static int __gpioRead(int gpio)
+{
+    int fd, val;
+    char buf[50];
+
+    sprintf(buf, "/sys/class/gpio/gpio%d/value", gpio);
+    fd = open(buf, O_RDONLY);
+    read(fd, &val, 1);
+    close(fd);
+    return val;
+}
+
+
+//
+// I2C routines...
+//
+
+#define I2C_MUX     "/dev/i2c-1"
+#define SLOT1_I2C   "/dev/i2c-2"
+#define SLOT2_I2C   "/dev/i2c-3"
+
+static int  i2c_handle;
+
+int i2c_init(void) {
+    if( (i2c_handle = open(SLOT1_I2C,O_RDWR)) < 0) {
+        printf("I2C Bus failed to open (%d)\n",__LINE__);
+        return(0);
+        }
+
+    if( ioctl(i2c_handle, I2C_SLAVE, MAX30101_SAD) < 0) {
+        printf("Failed to acquire bus access and/or talk to slave.\n");
+        exit(0);
+        }
+
+    return 1;
     }
 
-int read_i2c( uint8_t addr, uint16_t count, uint8_t* ptr ) 
-{
-    int err=i2c_write(i2c_handle, MAX30101_SAD, &addr, 1, I2C_NO_STOP);
-    if( !err )
-        err =i2c_read(i2c_handle, MAX30101_SAD, ptr, count);
-    return err;
+//
+//
+//JMF...
+//
+//
+
+void init(void) {
+    __gpioOpen(CLICK1_INT);
+    __gpioDirection(CLICK1_INT, 0); //input
+    i2c_init();
+    }
+
+int read_i2c( uint8_t reg, uint16_t count, uint8_t* ptr ) 
+{    
+    struct i2c_rdwr_ioctl_data packets;
+    struct i2c_msg             messages[2];
+    unsigned char              outbuf;
+    int i;
+
+    outbuf = reg;
+    messages[0].addr  = MAX30101_SAD;
+    messages[0].flags = 0;
+    messages[0].len   = sizeof(outbuf);
+    messages[0].buf   = &outbuf;
+
+    messages[1].addr  = MAX30101_SAD;
+    messages[1].flags = I2C_M_RD;
+    messages[1].len   = count;
+    messages[1].buf   = ptr;
+
+    packets.msgs      = messages;
+    packets.nmsgs     = 2;
+    i = ioctl(i2c_handle, I2C_RDWR, &packets);
+    if(i < 0)
+        return 0;
+        
+    return count;
 }
 
-void write_i2c( uint8_t addr, uint16_t count, uint8_t* ptr)
+
+void write_i2c( uint8_t reg, uint16_t count, uint8_t* ptr)
 {
-    uint8_t* buff = malloc(count+1);
+    unsigned char *outbuf;
+    struct i2c_rdwr_ioctl_data packets;
+    struct i2c_msg messages[1];
 
-    if( buff == NULL )
-        return;
+    outbuf = malloc(count+1);
 
-    buff[0] = addr;
-    memcpy(&buff[1], ptr, count);
+    outbuf[0] = reg;
+    memcpy(&outbuf[1],ptr,count);
 
-    i2c_write(i2c_handle, MAX30101_SAD, buff, count+1, I2C_STOP);
+    messages[0].addr  = MAX30101_SAD;
+    messages[0].flags = 0;
+    messages[0].len   = count+1;
+    messages[0].buf   = outbuf;
 
-    free(buff);
+    packets.msgs  = messages;
+    packets.nmsgs = 1;
+
+    ioctl(i2c_handle, I2C_RDWR, &packets);
+    free(outbuf);
 }
+
 
 void usage (void)
 {
@@ -86,8 +215,8 @@ int main(int argc, char *argv[])
     float    average_spo2;
     int32_t  nbr_readings;
 
-    int            run_time = 30;  //default to 30 second run time
-    gpio_level_t   intVal;
+    int   run_time = 30;  //default to 30 second run time
+    int   intVal;
     struct timeval time_start, time_now;
 
     while((i=getopt(argc,argv,"tr:?")) != -1 )
@@ -131,9 +260,9 @@ int main(int argc, char *argv[])
         //read BUFFER_SIZE samples, and determine the signal range
         for(i=0;i<BUFFER_SIZE;i++) {
             do {
-                gpio_read(intPin,&intVal);
+                intVal=__gpioRead(CLICK1_INT);
                 }
-            while( intVal == GPIO_LEVEL_HIGH  );                               //wait until the interrupt pin asserts
+            while( intVal == 1  );                               //wait until the interrupt pin asserts
             maxim_max30102_read_fifo((aun_red_buffer+i), (aun_ir_buffer+i));   //read from MAX30102 FIFO
             }
 
@@ -154,8 +283,7 @@ int main(int argc, char *argv[])
     printf("\n\nAverage Blood Oxygen Level = %.2f%%\n",average_spo2/nbr_readings);
     printf("        Average Heart Rate = %d BPM\n",average_hr/nbr_readings);
     max301024_shut_down(1);
-    gpio_deinit(&intPin);
-    i2c_bus_deinit(&i2c_handle);
+    __gpioClose(CLICK1_INT);
     printf("\r \nDONE...\n");
     exit(EXIT_SUCCESS);
 }
