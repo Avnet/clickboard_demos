@@ -26,7 +26,7 @@
 								<option defaultValue="gnu.c.optimization.level.none" id="xilinx.gnu.compiler.option.optimization.level.1035779081" name="Optimization Level" superClass="xilinx.gnu.compiler.option.optimization.level" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.option.debugging.level.2075844576" name="Debug Level" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.dircategory.includes.1323740995" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/jim/Avnet/clickboard_demos/clickmodule/HEARTRATE4"/>
+									<listOptionValue builtIn="false" value="../../../clickmodule/HEARTRATE4"/>
 								</option>
 								<inputType id="xilinx.gnu.arm.a53.linux.c.compiler.input.1988974336" name="C source files" superClass="xilinx.gnu.arm.a53.linux.c.compiler.input"/>
 							</tool>
