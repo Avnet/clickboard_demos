@@ -1,0 +1,1 @@
+{"SchemaVersion":1,"Name":"relay_demo","ComponentId":"3b468583-4290-44cd-a5cc-857419588546","EntryPoint":"/bin/app","CmdArgs":[],"Capabilities":{"AllowedConnections":[],"AllowedTcpServerPorts":[],"AllowedUdpServerPorts":[],"Gpio":[1,35],"Uart":[],"I2cMaster":[],"SpiMaster":[],"WifiConfig":false,"NetworkConfig":false,"SystemTime":false},"TargetApplicationRuntimeVersion":1}

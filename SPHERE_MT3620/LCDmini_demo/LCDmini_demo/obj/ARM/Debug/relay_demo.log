@@ -1,0 +1,29 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (obj\ARM\Debug\) contains files shared from another project (relay_demo.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Azure Sphere Utility version 19.5.4.53731
+  Copyright (C) Microsoft Corporation. All rights reserved.
+   
+  Start time (UTC): Thursday, 20 June 2019 17:42:33 
+  verbose: Creating image package. 
+  verbose: Azure Sphere application image package written. 
+  verbose: Appending metadata. 
+  verbose: Wrote metadata:
+    Section: Identity
+      Image Type:           Application
+      Component ID:         3b468583-4290-44cd-a5cc-857419588546
+      Image ID:             d8fc5bab-8827-4edf-a5ba-943f820aad25
+    Section: Signature
+      Signing Type:         ECDsa256
+      Cert:                 a8d5cc6958f48710140d7a26160fc1cfc31f5df0
+    Section: Debug
+      Image Name:           relay_demo
+      Built On (UTC):       6/20/2019 5:42:34 PM
+      Built On (Local):     6/20/2019 12:42:34 PM
+    Section: Temporary Image
+      Remove image at boot: False
+      Under development:    True
+    Section: ABI Depends
+      Depends on:           ApplicationRuntime, version 1
+   
+  verbose: Packaging completed successfully. 
+  verbose: Output file is at: C:\Users\mxuser\Documents\GitHub\clickboard_demos\SPHERE_MT3620\LCDmini_demo\relay_demo\bin\ARM\Debug\LCDmini_demo.imagepackage 
+  Command completed successfully in 00:00:00.4209490. 

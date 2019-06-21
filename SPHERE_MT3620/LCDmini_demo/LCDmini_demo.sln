@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LCDmini_demo", "LCDmini_demo\LCDmini_demo.vcxproj", "{03285247-5244-41D0-94C4-DC3582F84623}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8A4B3C2D-3514-4F81-8E6A-A869DE31EC07} = {8A4B3C2D-3514-4F81-8E6A-A869DE31EC07}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClickLib", "ClickLib\ClickLib.vcxproj", "{8A4B3C2D-3514-4F81-8E6A-A869DE31EC07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Release|ARM = Release|ARM
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03285247-5244-41D0-94C4-DC3582F84623}.Debug|ARM.ActiveCfg = Debug|ARM
+		{03285247-5244-41D0-94C4-DC3582F84623}.Debug|ARM.Build.0 = Debug|ARM
+		{03285247-5244-41D0-94C4-DC3582F84623}.Release|ARM.ActiveCfg = Release|ARM
+		{03285247-5244-41D0-94C4-DC3582F84623}.Release|ARM.Build.0 = Release|ARM
+		{8A4B3C2D-3514-4F81-8E6A-A869DE31EC07}.Debug|ARM.ActiveCfg = Debug|ARM
+		{8A4B3C2D-3514-4F81-8E6A-A869DE31EC07}.Debug|ARM.Build.0 = Debug|ARM
+		{8A4B3C2D-3514-4F81-8E6A-A869DE31EC07}.Release|ARM.ActiveCfg = Release|ARM
+		{8A4B3C2D-3514-4F81-8E6A-A869DE31EC07}.Release|ARM.Build.0 = Release|ARM
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03C9134F-BB3C-4F17-B2FE-6E5566DAA5A7}
+	EndGlobalSection
+EndGlobal

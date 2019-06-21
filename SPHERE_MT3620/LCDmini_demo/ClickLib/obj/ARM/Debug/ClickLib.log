@@ -1,0 +1,88 @@
+﻿  In file included from ..\..\..\clickmodule\LCDMINI\lcdmini.c:5:0:
+  ..\..\..\clickmodule\LCDMINI\lcdmini.c: In function 'lcd_setCursor':
+..\..\..\clickmodule\LCDMINI\lcdmini.h(29,33): warning :  conversion to 'uint8_t {aka unsigned char}' from 'size_t {aka unsigned int}' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.h(29,33): warning :  #define LCD_SETDDRAMADDR        0x80
+..\..\..\clickmodule\LCDMINI\lcdmini.h(29,33): warning :                                  ^
+..\..\..\clickmodule\LCDMINI\lcdmini.h(29,33): warning : ..\..\..\clickmodule\LCDMINI\lcdmini.c:159:17: note: in expansion of macro 'LCD_SETDDRAMADDR'
+..\..\..\clickmodule\LCDMINI\lcdmini.h(29,33): warning :      _LCDCommand(LCD_SETDDRAMADDR | (col + ddram_row));
+..\..\..\clickmodule\LCDMINI\lcdmini.h(29,33): warning :                  ^~~~~~~~~~~~~~~~
+..\..\..\clickmodule\LCDMINI\lcdmini.h(29,33): warning : ..\..\..\clickmodule\LCDMINI\lcdmini.c: In function 'lcd_display':
+..\..\..\clickmodule\LCDMINI\lcdmini.c(193,20): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(193,20): warning :    _displayState &= ~LCD_DISPLAYON;
+..\..\..\clickmodule\LCDMINI\lcdmini.c(193,20): warning :                     ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(193,20): warning : ..\..\..\clickmodule\LCDMINI\lcdmini.c: In function 'lcd_cursor':
+..\..\..\clickmodule\LCDMINI\lcdmini.c(211,20): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(211,20): warning :    _displayState &= ~LCD_CURSORON;
+..\..\..\clickmodule\LCDMINI\lcdmini.c(211,20): warning :                     ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(211,20): warning : ..\..\..\clickmodule\LCDMINI\lcdmini.c: In function 'lcd_blink':
+..\..\..\clickmodule\LCDMINI\lcdmini.c(229,20): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(229,20): warning :    _displayState &= ~LCD_BLINKON;
+..\..\..\clickmodule\LCDMINI\lcdmini.c(229,20): warning :                     ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(229,20): warning : ..\..\..\clickmodule\LCDMINI\lcdmini.c: In function 'lcd_autoscroll':
+..\..\..\clickmodule\LCDMINI\lcdmini.c(273,24): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(273,24): warning :    _displayOperation &= ~LCD_ENTRYSHIFTINCREMENT;
+..\..\..\clickmodule\LCDMINI\lcdmini.c(273,24): warning :                         ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(273,24): warning : ..\..\..\clickmodule\LCDMINI\lcdmini.c: In function 'lcd_textOutputDirection':
+..\..\..\clickmodule\LCDMINI\lcdmini.c(305,24): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(305,24): warning :    _displayOperation &= ~LCD_ENTRYLEFT;
+..\..\..\clickmodule\LCDMINI\lcdmini.c(305,24): warning :                         ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(305,24): warning : In file included from ..\..\..\clickmodule\LCDMINI\lcdmini.c:5:0:
+..\..\..\clickmodule\LCDMINI\lcdmini.c(305,24): warning : ..\..\..\clickmodule\LCDMINI\lcdmini.c: In function 'lcd_createChar':
+..\..\..\clickmodule\LCDMINI\lcdmini.h(28,33): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.h(28,33): warning :  #define LCD_SETCGRAMADDR        0x40
+..\..\..\clickmodule\LCDMINI\lcdmini.h(28,33): warning :                                  ^
+..\..\..\clickmodule\LCDMINI\lcdmini.h(28,33): warning : ..\..\..\clickmodule\LCDMINI\lcdmini.c:341:14: note: in expansion of macro 'LCD_SETCGRAMADDR'
+..\..\..\clickmodule\LCDMINI\lcdmini.h(28,33): warning :   _LCDCommand(LCD_SETCGRAMADDR | (location << 3));
+..\..\..\clickmodule\LCDMINI\lcdmini.h(28,33): warning :               ^~~~~~~~~~~~~~~~
+..\..\..\clickmodule\LCDMINI\lcdmini.c(344,16): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(344,16): warning :    HighNibble = (charmap[i] & 0xf0) | 0x04;                      //set the RSBIT for each nibble
+..\..\..\clickmodule\LCDMINI\lcdmini.c(344,16): warning :                 ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(345,16): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(345,16): warning :    LowNibble  = (charmap[i] << 4)   | 0x04;
+..\..\..\clickmodule\LCDMINI\lcdmini.c(345,16): warning :                 ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(349,36): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(349,36): warning :    _MCP23S17_TxByte(MCP23S17_GPIOB, HighNibble&(~LCD_ENABLE));   //and clear the LCD enable bit
+..\..\..\clickmodule\LCDMINI\lcdmini.c(349,36): warning :                                     ^~~~~~~~~~
+..\..\..\clickmodule\LCDMINI\lcdmini.c(353,36): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(353,36): warning :    _MCP23S17_TxByte(MCP23S17_GPIOB, LowNibble&(~LCD_ENABLE));   //and clear the LCD enable bit
+..\..\..\clickmodule\LCDMINI\lcdmini.c(353,36): warning :                                     ^~~~~~~~~
+..\..\..\clickmodule\LCDMINI\lcdmini.c(353,36): warning : ..\..\..\clickmodule\LCDMINI\lcdmini.c: In function '_LCDCommand':
+..\..\..\clickmodule\LCDMINI\lcdmini.c(411,17): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(411,17): warning :   HighNibble <<= 4;
+..\..\..\clickmodule\LCDMINI\lcdmini.c(411,17): warning :                  ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(412,16): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(412,16): warning :   LowNibble <<= 4;
+..\..\..\clickmodule\LCDMINI\lcdmini.c(412,16): warning :                 ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(418,38): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(418,38): warning :      _MCP23S17_TxByte(MCP23S17_GPIOB, (HighNibble) &(~LCD_ENABLE));   //then clear the LCD enable bit
+..\..\..\clickmodule\LCDMINI\lcdmini.c(418,38): warning :                                       ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(425,38): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(425,38): warning :      _MCP23S17_TxByte(MCP23S17_GPIOB, (LowNibble) &(~LCD_ENABLE));   //then clear LCD enable bit
+..\..\..\clickmodule\LCDMINI\lcdmini.c(425,38): warning :                                       ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(425,38): warning : ..\..\..\clickmodule\LCDMINI\lcdmini.c: In function '_LCDData':
+..\..\..\clickmodule\LCDMINI\lcdmini.c(500,17): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(500,17): warning :   HighNibble <<= 4;
+..\..\..\clickmodule\LCDMINI\lcdmini.c(500,17): warning :                  ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(501,16): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(501,16): warning :   LowNibble <<= 4;
+..\..\..\clickmodule\LCDMINI\lcdmini.c(501,16): warning :                 ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(510,48): warning :  suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(510,48): warning :   _MCP23S17_TxByte(MCP23S17_GPIOB, (HighNibble) &(~LCD_ENABLE) | rs);
+..\..\..\clickmodule\LCDMINI\lcdmini.c(510,48): warning :                                    ~~~~~~~~~~~~~^~~~~~~~~~~~~~
+..\..\..\clickmodule\LCDMINI\lcdmini.c(510,35): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(510,35): warning :   _MCP23S17_TxByte(MCP23S17_GPIOB, (HighNibble) &(~LCD_ENABLE) | rs);
+..\..\..\clickmodule\LCDMINI\lcdmini.c(510,35): warning :                                    ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(519,35): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(519,35): warning :   _MCP23S17_TxByte(MCP23S17_GPIOB, (LowNibble &(~LCD_ENABLE)) | rs);
+..\..\..\clickmodule\LCDMINI\lcdmini.c(519,35): warning :                                    ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(522,35): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(522,35): warning :   _MCP23S17_TxByte(MCP23S17_GPIOB, (LowNibble) &(~LCD_ENABLE) & (~rs));
+..\..\..\clickmodule\LCDMINI\lcdmini.c(522,35): warning :                                    ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(522,35): warning : ..\..\..\clickmodule\LCDMINI\lcdmini.c: In function 'write4bits':
+..\..\..\clickmodule\LCDMINI\lcdmini.c(544,19): warning :  conversion to 'uint8_t {aka unsigned char}' from 'int' may alter its value [-Wconversion]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(544,19): warning :   uint8_t packet = (value << 4) | (RSbit << 2);
+..\..\..\clickmodule\LCDMINI\lcdmini.c(544,19): warning :                    ^
+..\..\..\clickmodule\LCDMINI\lcdmini.c(544,19): warning : At top level:
+..\..\..\clickmodule\LCDMINI\lcdmini.c(465,13): warning :  '_MCP4161_setup' defined but not used [-Wunused-function]
+..\..\..\clickmodule\LCDMINI\lcdmini.c(465,13): warning :  static void _MCP4161_setup(void)
+..\..\..\clickmodule\LCDMINI\lcdmini.c(465,13): warning :              ^~~~~~~~~~~~~~
