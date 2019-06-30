@@ -22,20 +22,17 @@
 #define VL53L0X_SAD    0x29 
 #define I2C_MODE       0x01
 
-// Linux pin number to Xilinx pin numbers are weird and have a large
-// base number than can change between different releases of Linux
-#define MIO_BASE    338
-// EMIOs start after MIO and there is a fixed offset of 78 for ZYNQ US+
+#define MIO_BASE    334          // EMIOs start after MIO and there is a fixed offset of 78 for ZYNQ US+
 #define EMIO_BASE   (MIO_BASE+78)
 
-#define SLOT1_EN   (EMIO_BASE+3) //Interrupt input pin for Slot#1 HD_GPIO_8
-#define SLOT1_DR   (EMIO_BASE+3) //Interrupt input pin for Slot#1 HD_GPIO_8
+#define SLOT1_EN   (EMIO_BASE+6) //Interrupt input pin for Slot#1 HD_GPIO_7
+#define SLOT1_DR   (EMIO_BASE+7) //Interrupt input pin for Slot#1 HD_GPIO_8
 
-#define SLOT2_EN   (EMIO_BASE+3) //Interrupt input pin for Slot#1 HD_GPIO_8
-#define SLOT2_DR   (EMIO_BASE+3) //Interrupt input pin for Slot#1 HD_GPIO_8
+#define SLOT2_EN   (EMIO_BASE+13) //Interrupt input pin for Slot#1 HD_GPIO_14
+#define SLOT2_DR   (EMIO_BASE+14) //Interrupt input pin for Slot#1 HD_GPIO_15
 
 static const int enPin = SLOT1_EN; 
-static const int drPin = SLOT1_DR; 
+//static const int drPin = SLOT1_DR; 
 
 #define I2C_MUX     "/dev/i2c-1"
 #define SLOT1_I2C   "/dev/i2c-2"
@@ -101,35 +98,25 @@ int __gpioRead(int gpio)
 }
 
 
-static uint8_t __i2c_rdbyte( int file, uint8_t addr, uint8_t reg )
-{    
-    struct i2c_rdwr_ioctl_data packets;
-    struct i2c_msg             messages[2];
-    unsigned char              inbuf, outbuf;
-    int i;
+int i2c_init(void) {
+    if( (i2c_handle = open(SLOT1_I2C,O_RDWR)) < 0) {
+        printf("I2C Bus failed to open (%d)\n",__LINE__);
+        return(0);
+        }
 
-    outbuf = reg;
-    messages[0].addr  = addr;
-    messages[0].flags = 0;
-    messages[0].len   = sizeof(outbuf);
-    messages[0].buf   = &outbuf;
+    if( ioctl(i2c_handle, I2C_SLAVE, VL53L0X_SAD) < 0) {
+        printf("Failed to acquire bus access and/or talk to slave.\n");
+        exit(0);
+        }
 
-    messages[1].addr  = addr;;
-    messages[1].flags = I2C_M_RD;
-    messages[1].len   = sizeof(inbuf);
-    messages[1].buf   = &inbuf;
+    return 1;
+    }
 
-    packets.msgs      = messages;
-    packets.nmsgs     = 2;
-    i = ioctl(file, I2C_RDWR, &packets);
-    if(i < 0)
-        return 0;
-        
-    return inbuf;
-}
-
-static uint8_t __i2c_rdbuff( int file, uint8_t sad, uint8_t reg, uint8_t *buff, size_t siz )
-{    
+//
+// internal routine to read a buffer of bytes
+//
+static uint8_t __i2c_read( int file, uint8_t sad, uint8_t reg, uint8_t *buff, size_t siz )
+{
     struct i2c_rdwr_ioctl_data packets;
     struct i2c_msg             messages[2];
     unsigned char              outbuf;
@@ -155,27 +142,10 @@ static uint8_t __i2c_rdbuff( int file, uint8_t sad, uint8_t reg, uint8_t *buff, 
     return 1;
 }
 
-static void __i2c_wrbyte( int file, uint8_t addr, uint8_t reg, uint8_t val )
-{
-    unsigned char outbuf[2];
-    struct i2c_rdwr_ioctl_data packets;
-    struct i2c_msg messages[1];
-
-    outbuf[0] = reg;
-    outbuf[1] = val;
-
-    messages[0].addr  = addr;
-    messages[0].flags = 0;
-    messages[0].len   = sizeof(outbuf);
-    messages[0].buf   = outbuf;
-
-    packets.msgs  = messages;
-    packets.nmsgs = 1;
-
-    ioctl(file, I2C_RDWR, &packets);
-}
-
-static void __i2c_wrbuff( int file, uint8_t sad, uint8_t reg, uint8_t *buff, size_t siz )
+//
+// internal routine for writing a buffer of bytes
+//
+static void __i2c_write( int file, uint8_t sad, uint8_t reg, uint8_t *buff, size_t siz )
 {
     unsigned char *outbuf;
     struct i2c_rdwr_ioctl_data packets;
@@ -197,20 +167,9 @@ static void __i2c_wrbuff( int file, uint8_t sad, uint8_t reg, uint8_t *buff, siz
     free(outbuf);
 }
 
-int i2c_init(void) {
-    if( (i2c_handle = open(SLOT1_I2C,O_RDWR)) < 0) {
-        printf("I2C Bus failed to open (%d)\n",__LINE__);
-        return(0);
-        }
 
-    if( ioctl(i2c_handle, I2C_SLAVE, VL53L0X_SAD) < 0) {
-        printf("Failed to acquire bus access and/or talk to slave.\n");
-        exit(0);
-        }
-
-    return 1;
-    }
-
+//
+// - - - - - - VL53L0X routines - - - - - - - - -
 //
 // Sets up the VL53L0X_Device and initializes the I2C interface
 // for the WNC module.
@@ -220,15 +179,15 @@ int VL53L0X_i2c_init(VL53L0X_Dev_t *pMyDevice)
     pMyDevice->I2cDevAddr      = VL53L0X_SAD;
     pMyDevice->comms_type      =  I2C_MODE;
 
-    __gpioOpen(drPin);
-    __gpioDirection(drPin, 0); // 1 for output, 0 for input
+//    __gpioOpen(drPin);
+//    __gpioDirection(drPin, 0); // 1 for output, 0 for input
 
     __gpioOpen(enPin);
     __gpioDirection(enPin, 1); // 1 for output, 0 for input
     __gpioSet(enPin,0);
     _delay(10);                                  //allow 10ms for reset to occur
     __gpioSet(enPin,1);
-    return i2c_init();
+    return i2c_init()? VL53L0X_ERROR_NONE: VL53L0X_ERROR_CONTROL_INTERFACE;
 }
 
 //
@@ -239,7 +198,7 @@ int VL53L0X_i2c_close(VL53L0X_Dev_t *pMyDevice)
 {
     __gpioSet(enPin,0);
     __gpioClose(enPin);
-    __gpioClose(drPin);
+//    __gpioClose(drPin);
 
     pMyDevice->I2cDevAddr      = VL53L0X_SAD;
     pMyDevice->comms_type      =  I2C_MODE;
@@ -259,9 +218,14 @@ VL53L0X_Error VL53L0X_PollingDelay(VL53L0X_DEV Dev)
 
 
 
+
+
+
+
+
 VL53L0X_Error VL53L0X_WrByte(VL53L0X_DEV Dev, uint8_t index, uint8_t data)
 {
-    i2c_wrbyte(i2c_handle,Dev->I2cDevAddr, index, data);
+    __i2c_write(i2c_handle,Dev->I2cDevAddr, index, &data, 1);
     return VL53L0X_ERROR_NONE;
 }
 
@@ -272,13 +236,12 @@ VL53L0X_Error VL53L0X_WrWord(VL53L0X_DEV Dev, uint8_t index, uint16_t data)
     buff[0] = (uint8_t)((data & 0xff00) >>8);
     buff[1] = (uint8_t) (data & 0x00ff);
 
-    i2c_wrbuff(i2c_handle, Dev->I2cDevAddr, index, buff, 2);
+    __i2c_write(i2c_handle, Dev->I2cDevAddr, index, buff, 2);
     return VL53L0X_ERROR_NONE;
 }
 
 VL53L0X_Error VL53L0X_WrDWord(VL53L0X_DEV Dev, uint8_t index, uint32_t data)
 {
-    VL53L0X_Error r;
     uint8_t buff[4];
 
     buff[0] = (uint8_t)((data &  0xFF000000) >> 24);
@@ -286,21 +249,25 @@ VL53L0X_Error VL53L0X_WrDWord(VL53L0X_DEV Dev, uint8_t index, uint32_t data)
     buff[2] = (uint8_t)((data &  0x0000FF00) >> 8);
     buff[3] = (uint8_t) (data &  0x000000FF);
 
-    r=__i2c_wrbuff(i2c_handle, Dev->I2cDevAddr, index, buff, 4)? VL53L0X_ERROR_CONTROL_INTERFACE:VL53L0X_ERROR_NONE;
-    return r;
+    __i2c_write(i2c_handle, Dev->I2cDevAddr, index, buff, 4);
+    return VL53L0X_ERROR_NONE;
 }
 
 VL53L0X_Error VL53L0X_WriteMulti(VL53L0X_DEV Dev, uint8_t index, uint8_t *pdata, uint32_t count)
 {
-    r=__i2c_wrbuff(i2c_handle, Dev->I2cDevAddr, index, pdata, count)? VL53L0X_ERROR_CONTROL_INTERFACE:VL53L0X_ERROR_NONE;
-    return r;
+    __i2c_write(i2c_handle, Dev->I2cDevAddr, index, pdata, count);
+    return VL53L0X_ERROR_NONE;
 }
+
+
+
+
+
 
 VL53L0X_Error VL53L0X_RdByte(VL53L0X_DEV Dev, uint8_t index, uint8_t *data)
 {
     VL53L0X_Error r;
-    i2c_write(i2c_handle, Dev->I2cDevAddr, &index, 1, I2C_NO_STOP);
-    r=i2c_read(i2c_handle, Dev->I2cDevAddr, data, 1)? VL53L0X_ERROR_CONTROL_INTERFACE:VL53L0X_ERROR_NONE;
+    r=__i2c_read(i2c_handle, Dev->I2cDevAddr, index, data, 1)? VL53L0X_ERROR_NONE:VL53L0X_ERROR_CONTROL_INTERFACE;
     return r;
 }
 
@@ -309,7 +276,7 @@ VL53L0X_Error VL53L0X_RdWord(VL53L0X_DEV Dev, uint8_t index, uint16_t *data)
     VL53L0X_Error r=VL53L0X_ERROR_CONTROL_INTERFACE;
     uint8_t buff[2];
 
-    if( __i2c_rdbuff( i2c_handle, Dev->I2cDevAddr, reg, buff, 2 ) {
+    if( __i2c_read( i2c_handle, Dev->I2cDevAddr, index, buff, 2 ) ) {
         r=VL53L0X_ERROR_NONE;
         *data = (((uint16_t)buff[0]<<8) | buff[1]);
         }
@@ -321,7 +288,7 @@ VL53L0X_Error  VL53L0X_RdDWord(VL53L0X_DEV Dev, uint8_t index, uint32_t *data)
     VL53L0X_Error r=VL53L0X_ERROR_CONTROL_INTERFACE;
     uint8_t buff[4];
 
-    if( __i2c_rdbuff( i2c_handle, Dev->I2cDevAddr, index, buff, 4 ) {
+    if( __i2c_read( i2c_handle, Dev->I2cDevAddr, index, buff, 4 )  ) {
         r=VL53L0X_ERROR_NONE;
         *data = (((uint32_t)buff[0]<<24) | ((uint32_t)buff[1]<<16) | ((uint32_t)buff[2]<<8) | buff[3]);
         }
@@ -331,9 +298,14 @@ VL53L0X_Error  VL53L0X_RdDWord(VL53L0X_DEV Dev, uint8_t index, uint32_t *data)
 VL53L0X_Error VL53L0X_ReadMulti(VL53L0X_DEV Dev, uint8_t index, uint8_t *pdata, uint32_t count)
 {
     VL53L0X_Error r;
-    r=__i2c_rdbuff( i2c_handle, Dev->I2cDevAddr, index, pdata, count);
+    r=__i2c_read( i2c_handle, Dev->I2cDevAddr, index, pdata, count)?VL53L0X_ERROR_NONE:VL53L0X_ERROR_CONTROL_INTERFACE;
     return r;
 }
+
+
+
+
+
 
 VL53L0X_Error VL53L0X_UpdateByte(VL53L0X_DEV Dev, uint8_t index, uint8_t AndData, uint8_t OrData)
 {

@@ -1,4 +1,4 @@
-[submodule "clickmodule"]
-	path = clickmodule
+[submodule "clickmodules"]
+	path = clickmodules
 	url = https://github.com/Avnet/clickmodules
-        branch = v1.0
+	branch = master

@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\clickmodule\RELAY\relay.c" />
+    <ClCompile Include="..\..\..\clickmodules\RELAY\relay.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\clickmodule\RELAY\relay.h" />
+    <ClInclude Include="..\..\..\clickmodules\RELAY\relay.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8a4b3c2d-3514-4f81-8e6a-a869de31ec07}</ProjectGuid>

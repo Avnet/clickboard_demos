@@ -25,3 +25,7 @@ ATTSK2/*/relay_demo
 ATTSK2/*/stamp-h1
 ATTSK2/*/tof_demo
 ATTSK2/*/.deps/*
+**/obj
+**/bin
+**/.vs
+*.log

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\clickmodule\FLAME\flame.c">
+    <ClCompile Include="..\..\..\clickmodules\FLAME\flame.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -23,7 +23,7 @@
     <ClInclude Include="Inc\Public\ClickLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\clickmodule\FLAME\flame.h">
+    <ClInclude Include="..\..\..\clickmodules\FLAME\flame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

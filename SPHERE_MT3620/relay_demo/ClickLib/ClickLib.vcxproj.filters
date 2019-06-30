@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\clickmodule\RELAY\relay.c">
+    <ClCompile Include="..\..\..\clickmodules\RELAY\relay.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\clickmodule\RELAY\relay.h">
+    <ClInclude Include="..\..\..\clickmodules\RELAY\relay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

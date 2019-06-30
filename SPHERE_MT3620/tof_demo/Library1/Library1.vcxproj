@@ -11,27 +11,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\clickmodule\LIGHTRANGER\core\src\vl53l0x_api.c" />
-    <ClCompile Include="..\..\..\clickmodule\LIGHTRANGER\core\src\vl53l0x_api_calibration.c" />
-    <ClCompile Include="..\..\..\clickmodule\LIGHTRANGER\core\src\vl53l0x_api_core.c" />
-    <ClCompile Include="..\..\..\clickmodule\LIGHTRANGER\core\src\vl53l0x_api_ranging.c" />
-    <ClCompile Include="..\..\..\clickmodule\LIGHTRANGER\core\src\vl53l0x_api_strings.c" />
-    <ClCompile Include="..\..\..\clickmodule\LIGHTRANGER\platform\src\vl53l0x_platform.c" />
+    <ClCompile Include="..\..\..\clickmodules\LIGHTRANGER\core\src\vl53l0x_api.c" />
+    <ClCompile Include="..\..\..\clickmodules\LIGHTRANGER\core\src\vl53l0x_api_calibration.c" />
+    <ClCompile Include="..\..\..\clickmodules\LIGHTRANGER\core\src\vl53l0x_api_core.c" />
+    <ClCompile Include="..\..\..\clickmodules\LIGHTRANGER\core\src\vl53l0x_api_ranging.c" />
+    <ClCompile Include="..\..\..\clickmodules\LIGHTRANGER\core\src\vl53l0x_api_strings.c" />
+    <ClCompile Include="..\..\..\clickmodules\LIGHTRANGER\platform\src\vl53l0x_platform.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\core\inc\vl53l0x_api.h" />
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\core\inc\vl53l0x_api_calibration.h" />
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\core\inc\vl53l0x_api_core.h" />
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\core\inc\vl53l0x_api_ranging.h" />
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\core\inc\vl53l0x_api_strings.h" />
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\core\inc\vl53l0x_def.h" />
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\core\inc\vl53l0x_device.h" />
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\core\inc\vl53l0x_interrupt_threshold_settings.h" />
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\core\inc\vl53l0x_tuning.h" />
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\platform\inc\vl53l0x_i2c_platform.h" />
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\platform\inc\vl53l0x_platform.h" />
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\platform\inc\vl53l0x_platform_log.h" />
-    <ClInclude Include="..\..\..\clickmodule\LIGHTRANGER\platform\inc\vl53l0x_types.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\core\inc\vl53l0x_api.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\core\inc\vl53l0x_api_calibration.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\core\inc\vl53l0x_api_core.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\core\inc\vl53l0x_api_ranging.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\core\inc\vl53l0x_api_strings.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\core\inc\vl53l0x_def.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\core\inc\vl53l0x_device.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\core\inc\vl53l0x_interrupt_threshold_settings.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\core\inc\vl53l0x_tuning.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\platform\inc\vl53l0x_i2c_platform.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\platform\inc\vl53l0x_platform.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\platform\inc\vl53l0x_platform_log.h" />
+    <ClInclude Include="..\..\..\clickmodules\LIGHTRANGER\platform\inc\vl53l0x_types.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{21df4b38-f0ae-4e9c-9609-c7fa681df1c6}</ProjectGuid>
@@ -67,7 +67,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalOptions>-Werror=implicit-function-declaration %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">C:\Users\043674\source\repos\jflynn129\click_demos\clickmodule\LIGHTRANGER\platform\inc;C:\Users\043674\source\repos\jflynn129\click_demos\clickmodule\LIGHTRANGER\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">C:\Users\043674\source\repos\jflynn129\click_demos\clickmodules\LIGHTRANGER\platform\inc;C:\Users\043674\source\repos\jflynn129\click_demos\clickmodules\LIGHTRANGER\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">TurnOffAllWarnings</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>

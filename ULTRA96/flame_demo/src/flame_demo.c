@@ -85,14 +85,14 @@ int __gpioRead(int gpio)
 
 // Linux pin number to Xilinx pin numbers are weird and have a large
 // base number than can change between different releases of Linux
-#define MIO_BASE    338
+#define MIO_BASE    334
 // EMIOs start after MIO and there is a fixed offset of 78 for ZYNQ US+
 #define EMIO_BASE   (MIO_BASE+78)
 
-#define SLOT1_INT   (EMIO_BASE+3) //Interrupt input pin for Slot#1 HD_GPIO_8
-#define SLOT1_AN                  //ADC input for slot#1 is MIO38_SPIO_SCLK
-#define SLOT2_INT   (EMIO_BASE+8) //HD_GPIO_15
-#define SLOT2_AN                  //MIO42_SPIO_MISO
+#define SLOT1_INT   (EMIO_BASE+7) //Interrupt input pin for Slot#1 HD_GPIO_8
+#define SLOT1_AN    0              //ADC input for slot#1 is MIO38_SPIO_SCLK
+#define SLOT2_INT   (EMIO_BASE+14) //HD_GPIO_15
+#define SLOT2_AN    0              //MIO42_SPIO_MISO
 
 #define delay(x) (usleep(x*1000))   //macro to provide ms pauses
 void init(void) 

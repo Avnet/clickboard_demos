@@ -11,12 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\clickmodule\HEARTRATE4\algorithm_by_RF.h" />
-    <ClInclude Include="..\..\..\clickmodule\HEARTRATE4\max30102.h" />
+    <ClInclude Include="..\..\..\clickmodules\HEARTRATE4\algorithm_by_RF.h" />
+    <ClInclude Include="..\..\..\clickmodules\HEARTRATE4\max30102.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\clickmodule\HEARTRATE4\algorithm_by_RF.c" />
-    <ClCompile Include="..\..\..\clickmodule\HEARTRATE4\max30102.c" />
+    <ClCompile Include="..\..\..\clickmodules\HEARTRATE4\algorithm_by_RF.c" />
+    <ClCompile Include="..\..\..\clickmodules\HEARTRATE4\max30102.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{f2a00d17-e4fe-4fe6-89ba-bd26ecc40077}</ProjectGuid>

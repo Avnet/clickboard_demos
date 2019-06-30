@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\clickmodule\HEARTRATE4\algorithm_by_RF.h">
+    <ClInclude Include="..\..\..\clickmodules\HEARTRATE4\algorithm_by_RF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\clickmodule\HEARTRATE4\max30102.h">
+    <ClInclude Include="..\..\..\clickmodules\HEARTRATE4\max30102.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\clickmodule\HEARTRATE4\algorithm_by_RF.c">
+    <ClCompile Include="..\..\..\clickmodules\HEARTRATE4\algorithm_by_RF.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\clickmodule\HEARTRATE4\max30102.c">
+    <ClCompile Include="..\..\..\clickmodules\HEARTRATE4\max30102.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -23,18 +23,18 @@
 
 // Linux pin number to Xilinx pin numbers are weird and have a large
 // base number than can change between different releases of Linux
-#define MIO_BASE    338
+#define MIO_BASE    334
 // EMIOs start after MIO and there is a fixed offset of 78 for ZYNQ US+
 #define EMIO_BASE   (MIO_BASE+78)
 
-#define SLOT1_R1   (EMIO_BASE+3) //Interrupt input pin for Slot#1 HD_GPIO_8
-#define SLOT1_R2   (EMIO_BASE+3) //Interrupt input pin for Slot#1 HD_GPIO_8
+#define SLOT1_R1   (EMIO_BASE+41+3) //Relay 1 is PWM, MIO41_SPI0_CS
+#define SLOT1_R2   (EMIO_BASE+6)    //Relay 2 is CS, HD_GPIO_6
 
-#define SLOT2_R1   (EMIO_BASE+3) //Interrupt input pin for Slot#1 HD_GPIO_8
-#define SLOT2_R2   (EMIO_BASE+3) //Interrupt input pin for Slot#1 HD_GPIO_8
+#define SLOT2_R1   (EMIO_BASE+40+3) //Relay 1 is PWM, MIO40_PS_GPIO1_3
+#define SLOT2_R2   (EMIO_BASE+13)   //Relay 2 is CS, HD_GPIO_13
 
-static const int r1 = SLOT1_R1; 
-static const int r2 = SLOT1_R2; 
+static const int r1 = SLOT2_R1;
+static const int r2 = SLOT2_R2;
 
 #define delay(x) (usleep(x*1000))   //macro to provide ms pauses
 

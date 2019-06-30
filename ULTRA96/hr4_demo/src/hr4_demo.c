@@ -27,24 +27,11 @@
 #define PROXIMITY_THRESHOLD  32000
 #define delay(x)             (usleep(x*1000))   //macro to provide ms pauses
 
-// Linux pin number to Xilinx pin numbers are weird and have a large
-// base number than can change between different releases of Linux
-#define MIO_BASE    338
-// EMIOs start after MIO and there is a fixed offset of 78 for ZYNQ US+
-#define EMIO_BASE   (MIO_BASE+78)
-// RST pin Click Mezzanine site 1 is EMIO2 is so address of HD_GPIO_7 is 2
-#define CLICK1_INT  (EMIO_BASE+2)
-// RST pin Click Mezzanine site 2 is EMIO7 is so address of HD_GPIO_14 is 9
-#define CLICK2_INT  (EMIO_BASE+9)
+#define MIO_BASE    334           // MIMO base starts here but the
+#define EMIO_BASE   (MIO_BASE+78) // EMIO base is where the IO's are located 
 
-// Linux pin number to Xilinx pin numbers are weird and have a large
-// base number than can change between different releases of Linux
-#define MIO_BASE    338
-// EMIOs start after MIO and there is a fixed offset of 78 for ZYNQ US+
-#define EMIO_BASE   (MIO_BASE+78)
-
-#define SOCKET1_INT    (EMIO_BASE+8)  // HD_GPIO_8
-#define SOCKET2_INT    (EMIO_BASE+15) // HD_GPIO_15
+#define SOCKET1_INT    (EMIO_BASE+7)  // HD_GPIO_8
+#define SOCKET2_INT    (EMIO_BASE+14) // HD_GPIO_15
 
 static void __gpioOpen(int gpio)
 {
@@ -79,20 +66,6 @@ static void __gpioDirection(int gpio, int direction) // 1 for output, 0 for inpu
         write(fd, "in", 2);
     close(fd);
 }
-
-#if 0
-static void __gpioSet(int gpio, int value)
-{
-    char buf[50];
-    sprintf(buf, "/sys/class/gpio/gpio%d/value", gpio);
-    int fd = open(buf, O_WRONLY);
-
-    sprintf(buf, "%d", value);
-    write(fd, buf, 1);
-    close(fd);
-}
-
-#endif
 
 static int __gpioRead(int gpio)
 {
@@ -138,8 +111,8 @@ int i2c_init(void) {
 //
 
 void init(void) {
-    __gpioOpen(CLICK1_INT);
-    __gpioDirection(CLICK1_INT, 0); //input
+    __gpioOpen(SOCKET1_INT);
+    __gpioDirection(SOCKET1_INT, 0); //input
     i2c_init();
     }
 
@@ -260,7 +233,7 @@ int main(int argc, char *argv[])
         //read BUFFER_SIZE samples, and determine the signal range
         for(i=0;i<BUFFER_SIZE;i++) {
             do {
-                intVal=__gpioRead(CLICK1_INT);
+                intVal=__gpioRead(SOCKET1_INT);
                 }
             while( intVal == 1  );                               //wait until the interrupt pin asserts
             maxim_max30102_read_fifo((aun_red_buffer+i), (aun_ir_buffer+i));   //read from MAX30102 FIFO
@@ -283,7 +256,7 @@ int main(int argc, char *argv[])
     printf("\n\nAverage Blood Oxygen Level = %.2f%%\n",average_spo2/nbr_readings);
     printf("        Average Heart Rate = %d BPM\n",average_hr/nbr_readings);
     max301024_shut_down(1);
-    __gpioClose(CLICK1_INT);
+    __gpioClose(SOCKET1_INT);
     printf("\r \nDONE...\n");
     exit(EXIT_SUCCESS);
 }
