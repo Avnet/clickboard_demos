@@ -9,11 +9,7 @@
 #include "barometer.h"
 #include "hts221.h"
 
-<<<<<<< HEAD
 #define LPS25HB_8BIT_SAD (LPS25HB_SAD<<1)
-=======
-#define LPS25HV_8BIT_SAD (LPS25HB_SAD<<1)
->>>>>>> origin/master
 #define HTS221_8BIT_SAD  (HTS221_SAD<<1)
 
 I2C i2c_1(D14,D15); //only Slot #1 works due to I2C pinout
