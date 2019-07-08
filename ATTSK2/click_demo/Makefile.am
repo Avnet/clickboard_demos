@@ -4,9 +4,9 @@ ACLOCAL_ARFLAGS = cr
 
 AM_CPPFLAGS = \
            -I. \
-           -I../../clickmodule/BAROMETER/ \
-           -I../../clickmodule/TEMP_HUM/ \
-           -I../../clickmodule/OLED-B/ \
+           -I../../clickmodules/BAROMETER/ \
+           -I../../clickmodules/TEMP_HUM/ \
+           -I../../clickmodules/OLED-B/ \
            -O2 -Wall -static -fno-short-enums \
            -Wl,--unresolved-symbols=ignore-in-shared-libs 
 
@@ -27,8 +27,8 @@ c_demo_LDADD = libclick.a
 
 noinst_LIBRARIES = libclick.a 
 
-libclick_a_SOURCES = ../../clickmodule/TEMP_HUM/hts221.c \
-                     ../../clickmodule/BAROMETER//barometer.c \
-                     ../../clickmodule/OLED-B/oledb_ssd1306.c \
-                     ../../clickmodule/OLED-B/Avnet_GFX.c 
+libclick_a_SOURCES = ../../clickmodules/TEMP_HUM/hts221.c \
+                     ../../clickmodules/BAROMETER//barometer.c \
+                     ../../clickmodules/OLED-B/oledb_ssd1306.c \
+                     ../../clickmodules/OLED-B/Avnet_GFX.c 
 
