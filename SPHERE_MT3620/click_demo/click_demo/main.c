@@ -237,7 +237,7 @@ int main(int argc, char *argv[])
     Log_Debug("\r\n");
 
     if( test_oled==1 ) {
-        Log_Debug("Please ensure the OLED-B Click-Board is in Socket #1\r\n");^
+        Log_Debug("Please ensure the OLED-B Click-Board is in Socket #1\r\n");
         Log_Debug("This program runs through a series of graphics tests.\r\n");
         Log_Debug("\r\n");
         oledb_test(oled_display);
