@@ -61,8 +61,8 @@ static int rstPinFd = -1;
 //
 void spi_init(void)
 {
-    dcPinFd = GPIO_OpenAsOutput(MT3620_GPIO68, dcPin, GPIO_Value_High);
-    rstPinFd = GPIO_OpenAsOutput(MT3620_GPIO69, rstPin, GPIO_Value_High);
+    dcPinFd = GPIO_OpenAsOutput(MT3620_GPIO0, dcPin, GPIO_Value_High);
+    rstPinFd = GPIO_OpenAsOutput(MT3620_GPIO16, rstPin, GPIO_Value_High);
 
     SPIMaster_Config config;
     int ret = SPIMaster_InitConfig(&config);
@@ -237,6 +237,7 @@ int main(int argc, char *argv[])
     Log_Debug("\r\n");
 
     if( test_oled==1 ) {
+        Log_Debug("Please ensure the OLED-B Click-Board is in Socket #1\r\n");^
         Log_Debug("This program runs through a series of graphics tests.\r\n");
         Log_Debug("\r\n");
         oledb_test(oled_display);
