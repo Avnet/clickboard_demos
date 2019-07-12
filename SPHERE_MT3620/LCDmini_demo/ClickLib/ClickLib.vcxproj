@@ -11,12 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\clickmodule\LCDMINI\lcdmini.c" />
-    <ClCompile Include="..\..\..\clickmodule\RELAY\relay.c" />
+    <ClCompile Include="..\..\..\clickmodules\LCDMINI\lcdmini.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\clickmodule\LCDMINI\lcdmini.h" />
-    <ClInclude Include="..\..\..\clickmodule\RELAY\relay.h" />
+    <ClInclude Include="..\..\..\clickmodules\LCDMINI\lcdmini.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8a4b3c2d-3514-4f81-8e6a-a869de31ec07}</ProjectGuid>
@@ -51,6 +49,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalOptions>-Werror=implicit-function-declaration %(AdditionalOptions)</AdditionalOptions>
+      <CAdditionalWarning Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">no-conversion</CAdditionalWarning>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

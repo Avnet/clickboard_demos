@@ -15,18 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\clickmodule\RELAY\relay.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\clickmodule\LCDMINI\lcdmini.c">
+    <ClCompile Include="..\..\..\clickmodules\LCDMINI\lcdmini.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\clickmodule\RELAY\relay.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\clickmodule\LCDMINI\lcdmini.h">
+    <ClInclude Include="..\..\..\clickmodules\LCDMINI\lcdmini.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

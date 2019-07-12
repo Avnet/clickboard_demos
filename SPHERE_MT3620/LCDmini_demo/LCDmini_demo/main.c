@@ -28,7 +28,6 @@ static int blueLEDFd = -1;
 static int pwm_fd = -1;
 static int spiFd = -1;
 static int rst_fd = -1;
-static int cs_fd = -1;
 static int cs2_fd = -1;
 
 
@@ -177,14 +176,14 @@ void init(void)
 	if (pwm_fd < 0) 
 	{
 		Log_Debug("ERROR: Could not open PWM GPIO: %s (%d).\n", strerror(errno), errno);
-		return -1;
+		return;
 	}
 	// A pin for Reset SPI device
 	rst_fd = GPIO_OpenAsOutput(MT3620_GPIO17, GPIO_OutputMode_PushPull, GPIO_Value_High);
 	if (rst_fd < 0)
 	{
 		Log_Debug("ERROR: Could not open Reset GPIO: %s (%d).\n", strerror(errno), errno);
-		return -1;
+		return;
 	}
 	// CS1 is automatically handled by the API function SPI, We don't if this will be changed in future
 	//cs_fd = GPIO_OpenAsOutput(MT3620_GPIO35, GPIO_OutputMode_PushPull, GPIO_Value_High);
@@ -194,7 +193,7 @@ void init(void)
 	if (cs2_fd < 0)
 	{
 		Log_Debug("ERROR: Could not open CS2 GPIO: %s (%d).\n", strerror(errno), errno);
-		return -1;
+		return;
 	}
 
 	// SPI
@@ -206,7 +205,7 @@ void init(void)
 	if (ret != 0)
 	{
 		Log_Debug("ERROR: SPIMaster_Config = %d errno = %s (%d)\n", ret, strerror(errno), errno);
-		return -1;
+		return;
 	}
 
 	config.csPolarity = SPI_ChipSelectPolarity_ActiveLow;
@@ -217,7 +216,7 @@ void init(void)
 	if (spiFd < 0)
 	{
 		Log_Debug("ERROR: SPIMaster_Open: errno=%d (%s)\n", errno, strerror(errno));
-		return -1;
+		return;
 	}
 
 	// Set bus speed to 1M baud
@@ -226,14 +225,14 @@ void init(void)
 	if (result != 0)
 	{
 		Log_Debug("ERROR: SPIMaster_SetBusSpeed: errno=%d (%s)\n", errno, strerror(errno));
-		return -1;
+		return;
 	}
 
 	result = SPIMaster_SetMode(spiFd, SPI_Mode_3);
 	if (result != 0)
 	{
 		Log_Debug("ERROR: SPIMaster_SetMode: errno=%d (%s)\n", errno, strerror(errno));
-		return -1;
+		return;
 	}
 }
 

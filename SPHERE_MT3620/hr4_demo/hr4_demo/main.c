@@ -32,7 +32,7 @@
 #define delay(x)             (usleep(x*1000))   //macro to provide ms pauses
 
 static int i2cFd = -1;
-static int intPinFd;     
+static int intPinFd = -1;     
 
 #define MIKROE_INT    MT3620_GPIO2  //Socket#1=GPIO2_PWM2
 
@@ -146,10 +146,12 @@ int main(int argc, char *argv[])
 		for (i = 0; i < BUFFER_SIZE; i++) {
 			do {
 				GPIO_GetValue(intPinFd, &intVal);
-			} while (intVal == GPIO_Value_High);                               //wait until the interrupt pin asserts
-			maxim_max30102_read_fifo((aun_red_buffer + i), (aun_ir_buffer + i));   //read from MAX30102 FIFO
-		}
+			} while (intVal == 1);                               //wait until the interrupt pin asserts
 
+			maxim_max30102_read_fifo((aun_red_buffer + i), (aun_ir_buffer + i));   //read from MAX30102 FIFO
+			Log_Debug("*");
+		}
+		Log_Debug("\n");
 		//calculate heart rate and SpO2 after BUFFER_SIZE samples (ST seconds of samples) using Robert's method
 		rf_heart_rate_and_oxygen_saturation(aun_ir_buffer, BUFFER_SIZE, aun_red_buffer, &n_spo2, &ch_spo2_valid, &n_heart_rate, &ch_hr_valid, &ratio, &correl);
 
@@ -159,6 +161,8 @@ int main(int argc, char *argv[])
 			average_spo2 += n_spo2;
 			nbr_readings++;
 		}
+		else
+			Log_Debug("ch_hr_valid=%d, ch_spo2_valid=%d\n", ch_hr_valid, ch_spo2_valid);
 
 		gettimeofday(&time_now, NULL);
 	}
