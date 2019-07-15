@@ -31,6 +31,9 @@ spi_handle_t  myspi = (spi_handle_t)0;
 gpio_handle_t rstPin; //spi reset pin
 gpio_handle_t dcPin;  //device/command pin
 
+#define SPI_RST_PIN    GPIO_PIN_2  //Slot #1=GPIO_PIN_2, Slot #2=GPIO_PIN95
+#define SPI_DC_PIN     GPIO_PIN_4  //Slot #1=GPIO_PIN_4, Slot #2=GPIO_PIN96
+
 //
 //SPI handler for OLEDB display
 //
@@ -38,13 +41,13 @@ void spi_init(void)
 {
     spi_bus_init(SPI_BUS_II, &myspi);
     spi_format(myspi, SPIMODE_CPOL_0_CPHA_0, SPI_BPW_8);
-    spi_frequency(myspi, 960000);
+    spi_frequency(myspi, 1000000);
 
-    gpio_init(GPIO_PIN_95, &rstPin);
+    gpio_init(SPI_RST_PIN, &rstPin);
     gpio_write(rstPin,  GPIO_LEVEL_HIGH );         // RST is active low
     gpio_dir(rstPin, GPIO_DIR_OUTPUT);
 
-    gpio_init(GPIO_PIN_96, &dcPin);
+    gpio_init(SPI_DC_PIN, &dcPin);
     gpio_write(dcPin,  GPIO_LEVEL_HIGH );          // D/C, HIGH=Data, LOW=Command
     gpio_dir(dcPin, GPIO_DIR_OUTPUT);
 }

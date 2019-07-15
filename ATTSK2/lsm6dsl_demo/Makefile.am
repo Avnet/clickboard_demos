@@ -4,6 +4,7 @@ ACLOCAL_ARFLAGS = cr
 
 AM_CPPFLAGS = \
            -I. \
+           -I../../clickmodules/LSM6DSL \
            -O2 -Wall -static -fno-short-enums \
            -Wl,--unresolved-symbols=ignore-in-shared-libs 
 
@@ -21,5 +22,6 @@ lsm6dsl_demo_LDADD = libclick.a
 
 noinst_LIBRARIES = libclick.a 
 
-libclick_a_SOURCES = ./LSM6DSL_ACC_GYRO_Driver.c \
-                     ./LSM6DSLSensor.c
+libclick_a_SOURCES = ../../clickmodules/LSM6DSL/LSM6DSL_ACC_GYRO_Driver.c \
+                     ../../clickmodules/LSM6DSL/LSM6DSLSensor.c \
+                     ../../clickmodules/LSM6DSL/lsm6dsl.c
