@@ -14,13 +14,13 @@
 #define delay(x) wait_ms(x)
 
 SPI spi(D11, D12, D13); // mosi, miso, sclk
-DigitalOut csPin(D9);
-DigitalOut dcPin(D5);
-DigitalOut rstPin(A2);
+DigitalOut csPin(D9);  //Slot#1=d10, Slot#2=d9
+DigitalOut dcPin(D5);   //Slot#1=d6,  Slot#2=d5
+DigitalOut rstPin(A2);  //Slot#1=A3, Slot#2=A2
 
 void spi_init(void)
 {
-    rstPin= 0;
+    rstPin= 1;
     dcPin = 1;
     csPin = 1;
 
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
     printf("\n\n");
     printf("     ****\r\n");
     printf("    **  **     SW reuse using C example\r\n");
-    printf("   **    **    OLED-B Click\r\n");
+    printf("   **    **    OLED-B Click (install in Slot#2)\r\n");
     printf("  ** ==== **\r\n");
     printf("\r\n");
 

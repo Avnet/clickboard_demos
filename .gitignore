@@ -1,4 +1,4 @@
-*.o
+**/*.o
 *.a
 *.tlog
 ATTSK2/*/aclocal.m4
@@ -29,3 +29,7 @@ ATTSK2/*/.deps/*
 **/bin
 **/.vs
 *.log
+**/*.Po
+**/mbed-os.lib
+**/mbed-os/
+

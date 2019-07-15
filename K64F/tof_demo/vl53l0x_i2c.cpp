@@ -3,17 +3,16 @@
 #include "vl53l0x_i2c_platform.h"
 #include "vl53l0x_api.h"
 
-#undef I2C
 #include "mbed.h"
 
 #define _delay(x)           (wait_ms(x))
 #define VL53L0X_SAD         0x29 
 #define VL53L0X_8BIT_SAD    (0x29<<1)
-#define I2C_MODE            0x01
 
-I2C        i2c(I2C_SDA , I2C_SCL);
-DigitalOut enPin(PTB11);  //Slot#1=PTB11; Slot#2=PTB10
-DigitalIn  drPin(PTB9);   //Slot#1=PTB9;  Slot#2=PTA1
+I2C        i2c(D14, D15);
+
+DigitalOut enPin(PTB11);  
+DigitalIn  drPin(PTB9);
 
 //
 // Sets up the VL53L0X_Device and initializes the I2C interface
@@ -21,12 +20,12 @@ DigitalIn  drPin(PTB9);   //Slot#1=PTB9;  Slot#2=PTA1
 int32_t VL53L0X_i2c_init(VL53L0X_Dev_t *pMyDevice)
 {
     pMyDevice->I2cDevAddr      = VL53L0X_8BIT_SAD;
-    pMyDevice->comms_type      =  I2C_MODE;
+    pMyDevice->comms_type      = 0;
 
     enPin = 0;
     _delay(10);                                  //allow 10ms for reset to occur
     enPin = 1;
-    return 1;
+    return VL53L0X_ERROR_NONE;
 }
 
 //
@@ -36,7 +35,7 @@ int32_t VL53L0X_i2c_init(VL53L0X_Dev_t *pMyDevice)
 int32_t VL53L0X_i2c_close(VL53L0X_Dev_t *pMyDevice)
 {
     // nothing to do
-    return 0;
+    return VL53L0X_ERROR_NONE;
 }
 
 //

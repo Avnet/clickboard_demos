@@ -75,6 +75,7 @@ int main(int argc, char *argv[])
     printf("    **  **     SW reuse example by Avnet\r\n");
     printf("   **    **    LSM6DSL Example showing 6D orentation detection\r\n");
     printf("  ** ==== **\r\n");
+    printf("               Place LSM6DSL into Slot #2\r\n");
     printf("\r\n");
     fflush(stdout);
 

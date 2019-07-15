@@ -12,7 +12,7 @@
 #define LPS25HB_8BIT_SAD (LPS25HB_SAD<<1)
 #define HTS221_8BIT_SAD  (HTS221_SAD<<1)
 
-I2C i2c_1(D14,D15); //only Slot #1 works due to I2C pinout
+I2C i2c_1(D14,D15); //I2C only works in Slot #1 so you can only run 1 board at a time
 
 uint8_t read_barometer_i2c( uint8_t addr ) {
     unsigned char value_read = 0;
@@ -54,14 +54,16 @@ int main(int argc, char *argv[])
     printf("     ****\r\n");
     printf("    **  **     SW reuse using C example\r\n");
     printf("   **    **    HTS221 & BAROMETER click\r\n");
-    printf("  ** ==== **\r\n");
+    printf("  ** ==== **   \r\n");
     printf("\r\n");
+    printf("Only Slot #1 works on the click SHIELD (beasue only D15/D14 are valid I2C pins)\r\n");
+    printf("so ensure that the HTS221/BAROMETER click are installed in Slot #1\r\n");
 
     printf("This program reads and prints the HTS2212 & LPS25HB sensor values every second for 30 seconds.\r\n");
     printf("\r\n");
 
-    printf("htw221 returning 0x%02X\n\r",hts221_who_am_i(hts_ptr));
-    printf("barometer returning 0x%02X\n\r",barometer_who_am_i(bar_ptr));
+    printf("hts221 returning 0x%02X\n\r",hts221_who_am_i(hts_ptr));
+    printf("barometer returning 0x%02X\n\r\n\r",barometer_who_am_i(bar_ptr));
 
     click_modules |= (hts221_who_am_i(hts_ptr)==I_AM_HTS221)? 0x02:0;
     click_modules |= (barometer_who_am_i(bar_ptr)==LPS25HB_WHO_AM_I)? 0x01:0;
