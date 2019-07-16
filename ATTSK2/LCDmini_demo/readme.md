@@ -1,0 +1,1 @@
+This demo program doesn't work on the AT&T board because CS2 BINIO is tied to the AN pin on the MikroBus socket.  The mini lcd expects to use this as a select pin but the WNC can only use this pin as an ADC input.  This prevents the click-board from working.
