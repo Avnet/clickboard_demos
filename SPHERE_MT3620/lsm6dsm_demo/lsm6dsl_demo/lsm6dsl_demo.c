@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
     Log_Debug("     ****\r\n");
     Log_Debug("    **  **     SW reuse example by Avnet\r\n");
     Log_Debug("   **    **    LSM6DSL Example showing 6D orentation detection\r\n");
-    Log_Debug("  ** ==== **   NOTE: click-board inserted into Slot #2\r\n");
+    Log_Debug("  ** ==== **   NOTE: click-board inserted into Slot #1\r\n");
     Log_Debug("\r\n");
 
     run_time *= 1000;
