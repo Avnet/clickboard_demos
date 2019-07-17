@@ -4,15 +4,7 @@
 */
 
 #include <errno.h>
-//#include <signal.h>
-//#include <stdbool.h>
-//#include <stdlib.h>
-//#include <string.h>
 #include <time.h>
-//#include <stdint.h>
-//#include <stdio.h>
-//#include <fcntl.h>
-//#include <unistd.h>
 #include <sys/time.h>
 
 // applibs_versions.h defines the API struct versions to use for applibs APIs.
@@ -28,16 +20,11 @@
 // time specs for delays
 struct timespec timeval; 
 #define delay(x) {timeval.tv_sec=0; timeval.tv_nsec=(x*1000000); nanosleep(&timeval,NULL);} //macro to provide ms pauses
-#define MIKRO_INT       MT3620_GPIO2  //slot #1 =MT3620_GPIO34 ; slot #2 = MT3620_GPIO35
-//#define MIKRO_CS        MT3620_GPIO2   //MT3620_GPIO2
+#define MIKRO_INT       MT3620_GPIO2  //INT pin in both slots is MT3620_GPIO2
+#define MIKRO_CS        MT3620_GPIO35 //slot #1=MT3620_GPIO34; Slot #2=MT3620_GPIO35
 
 static int spiFd    = -1;
 static int intPinFd = -1;
-//GPIO_Value_Type mems_event = GPIO_Value_Low;
-
-
-
-
 
 //
 //Initialization for Platform
@@ -52,12 +39,12 @@ void platform_init(void)
         }
 
     spi_config.csPolarity = SPI_ChipSelectPolarity_ActiveLow;
-    if( (spiFd = SPIMaster_Open(MT3620_SPI_ISU1, MT3620_SPI_CHIP_SELECT_B, &spi_config)) < 0) {
+    if( (spiFd = SPIMaster_Open(MT3620_SPI_ISU1, MT3620_SPI_CHIP_SELECT_A, &spi_config)) < 0) {
         Log_Debug("ERROR: SPIMaster_Open: errno=%d (%s)\n", errno, strerror(errno));
         return;
         }
 
-    if( (SPIMaster_SetBusSpeed(spiFd, 1000000)) != 0) {
+    if( (SPIMaster_SetBusSpeed(spiFd, 400000)) != 0) {
         Log_Debug("ERROR: SPIMaster_SetBusSpeed: errno=%d (%s)\n", errno, strerror(errno));
         return;
         }
@@ -77,40 +64,42 @@ void platform_init(void)
 uint8_t spi_write( uint8_t *b, uint8_t reg, uint16_t siz )
 {
     SPIMaster_Transfer transfer;
+    ssize_t            bytesTxed;
+    uint8_t*           tbuff;
+	size_t             tsize = (size_t) siz + 1;
 
-    if( SPIMaster_InitTransfers(&transfer,1) != 0 )
+    tbuff = (uint8_t*)malloc(tsize);
+    tbuff[0] = reg & 0x7f;
+    memcpy(&tbuff[1], b, siz);
+
+	if( SPIMaster_InitTransfers(&transfer,1) != 0 )
         return (uint8_t)-1;
 
     transfer.flags = SPI_TransferFlags_Write;
-    transfer.writeData = b;
-    transfer.length = siz;
+    transfer.writeData = tbuff;
+    transfer.length = tsize;
 
-    if (SPIMaster_TransferSequential(spiFd, &transfer, 1) < 0) {
+    bytesTxed = SPIMaster_TransferSequential(spiFd, &transfer, 1);
+    if (bytesTxed < 0) {
         Log_Debug("ERROR: SPIMaster_TransferSequential: %d/%s\n", errno, strerror(errno));
         return (uint8_t)-1;
         }
 
-    return(0);
+    free(tbuff);
+    return(bytesTxed != tsize);
 }
 
 uint8_t spi_read( uint8_t *b,uint8_t reg,uint16_t siz)
 {
     uint8_t i;
 
-	for (i = 0; i < siz; i++)
-		b[i] = 0;
-
     reg |= 0x80;
-	if ((i =(uint8_t) SPIMaster_WriteThenRead(spiFd, &reg, 1, b, siz)) < 0) {
-		Log_Debug("ERROR: SPIMaster_WriteThenRead: errno=%d/%s\n", errno, strerror(errno));
-	}
+    if ((i =(uint8_t) SPIMaster_WriteThenRead(spiFd, &reg, 1, b, siz)) < 0) {
+       Log_Debug("ERROR: SPIMaster_WriteThenRead: errno=%d/%s\n", errno, strerror(errno));
+       }
 
-	return (i < 0) ? 1 : 0; 
+    return (i < 0) ? 1 : 0; 
 }
-//void INT1_mems_event_cb(void)
-//{
-//  mems_event = 1;
-//}
 
 void usage (void)
 {
@@ -144,7 +133,7 @@ int main(int argc, char *argv[])
     Log_Debug("  ** ==== **   NOTE: click-board inserted into Slot #2\r\n");
     Log_Debug("\r\n");
 
-	run_time *= 1000;
+    run_time *= 1000;
     while( run_time-- >0 ) {
         sendOrientation();
         delay(1);
@@ -163,12 +152,12 @@ uint8_t last_zh = 255;
 
 void sendOrientation(void)
 {
-  uint8_t xl = 255;
-  uint8_t xh = 255;
-  uint8_t yl = 255;
-  uint8_t yh = 255;
-  uint8_t zl = 255;
-  uint8_t zh = 255;
+  uint8_t xl = 0;
+  uint8_t xh = 0;
+  uint8_t yl = 0;
+  uint8_t yh = 0;
+  uint8_t zl = 0;
+  uint8_t zh = 0;
 
   lsm6dsl_Get_6D_Orientation_XL(&xl);
   lsm6dsl_Get_6D_Orientation_XH(&xh);
