@@ -26,7 +26,7 @@
 								<option defaultValue="gnu.c.optimization.level.none" id="xilinx.gnu.compiler.option.optimization.level.681188194" name="Optimization Level" superClass="xilinx.gnu.compiler.option.optimization.level" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.option.debugging.level.497339157" name="Debug Level" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.dircategory.includes.2063597529" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
-									<listOptionValue builtIn="false" value="../../../clickmodule/FLAME"/>
+									<listOptionValue builtIn="false" value="../../../clickmodules/FLAME"/>
 								</option>
 								<inputType id="xilinx.gnu.arm.a53.linux.c.compiler.input.19581340" name="C source files" superClass="xilinx.gnu.arm.a53.linux.c.compiler.input"/>
 							</tool>
@@ -37,7 +37,7 @@
 							<tool id="xilinx.gnu.arm.a53.linux.toolchain.archiver.1598614875" name="ARM v8 Linux archiver" superClass="xilinx.gnu.arm.a53.linux.toolchain.archiver"/>
 							<tool id="xilinx.gnu.arm.a53.linux.c.toolchain.linker.debug.178626687" name="ARM v8 Linux gcc linker" superClass="xilinx.gnu.arm.a53.linux.c.toolchain.linker.debug">
 								<option id="xilinx.gnu.c.link.option.paths.1653856872" name="Library search path (-L)" superClass="xilinx.gnu.c.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="../../../clickmodule/Debug"/>
+									<listOptionValue builtIn="false" value="../../../clickmodules/Debug"/>
 								</option>
 								<option id="xilinx.gnu.c.link.option.libs.1700229547" name="Libraries (-l)" superClass="xilinx.gnu.c.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="clickmodules"/>

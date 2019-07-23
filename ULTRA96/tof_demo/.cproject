@@ -26,8 +26,8 @@
 								<option defaultValue="gnu.c.optimization.level.none" id="xilinx.gnu.compiler.option.optimization.level.388914258" name="Optimization Level" superClass="xilinx.gnu.compiler.option.optimization.level" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.option.debugging.level.1154787968" name="Debug Level" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.dircategory.includes.1522229119" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
-									<listOptionValue builtIn="false" value="../../../clickmodule/LIGHTRANGER/core/inc"/>
-									<listOptionValue builtIn="false" value="../../../clickmodule/LIGHTRANGER/platform/inc"/>
+									<listOptionValue builtIn="false" value="../../../clickmodules/LIGHTRANGER/core/inc"/>
+									<listOptionValue builtIn="false" value="../../../clickmodules/LIGHTRANGER/platform/inc"/>
 								</option>
 								<inputType id="xilinx.gnu.arm.a53.linux.c.compiler.input.710459218" name="C source files" superClass="xilinx.gnu.arm.a53.linux.c.compiler.input"/>
 							</tool>
@@ -37,11 +37,11 @@
 							</tool>
 							<tool id="xilinx.gnu.arm.a53.linux.toolchain.archiver.1449823189" name="ARM v8 Linux archiver" superClass="xilinx.gnu.arm.a53.linux.toolchain.archiver"/>
 							<tool id="xilinx.gnu.arm.a53.linux.c.toolchain.linker.debug.2141466308" name="ARM v8 Linux gcc linker" superClass="xilinx.gnu.arm.a53.linux.c.toolchain.linker.debug">
-								<option id="xilinx.gnu.c.link.option.libs.673692836" superClass="xilinx.gnu.c.link.option.libs" valueType="libs">
+								<option id="xilinx.gnu.c.link.option.libs.673692836" name="Libraries (-l)" superClass="xilinx.gnu.c.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="clickmodules"/>
 								</option>
-								<option id="xilinx.gnu.c.link.option.paths.1543172356" superClass="xilinx.gnu.c.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="/home/jim/Avnet/clickboard_demos/clickmodule/Debug"/>
+								<option id="xilinx.gnu.c.link.option.paths.1543172356" name="Library search path (-L)" superClass="xilinx.gnu.c.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="../../../clickmodules/Debug"/>
 								</option>
 								<inputType id="xilinx.gnu.linker.input.2104234001" superClass="xilinx.gnu.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>

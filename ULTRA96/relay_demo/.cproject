@@ -26,7 +26,7 @@
 								<option defaultValue="gnu.c.optimization.level.none" id="xilinx.gnu.compiler.option.optimization.level.185474569" name="Optimization Level" superClass="xilinx.gnu.compiler.option.optimization.level" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.option.debugging.level.1972509219" name="Debug Level" superClass="xilinx.gnu.compiler.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="xilinx.gnu.compiler.dircategory.includes.922576829" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
-									<listOptionValue builtIn="false" value="../../../clickmodule/RELAY/"/>
+									<listOptionValue builtIn="false" value="../../../clickmodules/RELAY/"/>
 								</option>
 								<inputType id="xilinx.gnu.arm.a53.linux.c.compiler.input.357893620" name="C source files" superClass="xilinx.gnu.arm.a53.linux.c.compiler.input"/>
 							</tool>
@@ -36,11 +36,11 @@
 							</tool>
 							<tool id="xilinx.gnu.arm.a53.linux.toolchain.archiver.832950349" name="ARM v8 Linux archiver" superClass="xilinx.gnu.arm.a53.linux.toolchain.archiver"/>
 							<tool id="xilinx.gnu.arm.a53.linux.c.toolchain.linker.debug.1499450494" name="ARM v8 Linux gcc linker" superClass="xilinx.gnu.arm.a53.linux.c.toolchain.linker.debug">
-								<option id="xilinx.gnu.c.link.option.libs.808665570" superClass="xilinx.gnu.c.link.option.libs" valueType="libs">
+								<option id="xilinx.gnu.c.link.option.libs.808665570" name="Libraries (-l)" superClass="xilinx.gnu.c.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="clickmodules"/>
 								</option>
-								<option id="xilinx.gnu.c.link.option.paths.70143005" superClass="xilinx.gnu.c.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="../../../clickmodule/Debug"/>
+								<option id="xilinx.gnu.c.link.option.paths.70143005" name="Library search path (-L)" superClass="xilinx.gnu.c.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="../../../clickmodules/Debug"/>
 								</option>
 								<inputType id="xilinx.gnu.linker.input.51247720" superClass="xilinx.gnu.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
