@@ -121,7 +121,7 @@ uint8_t spi_write( uint8_t *b, uint8_t reg, uint16_t siz )
     memcpy(&txbuff[1],b,siz);
     struct spi_ioc_transfer tr = {
     		.tx_buf = (unsigned long)txbuff,
-			.rx_buf = rxbuff,
+			.rx_buf = (unsigned long)rxbuff,
     		.len = i,
     		.delay_usecs = 0,
     	    .speed_hz = 0,
