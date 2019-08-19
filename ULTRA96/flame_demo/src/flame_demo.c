@@ -21,6 +21,11 @@
 
 #include "flame.h"
 
+//Ultra96 BSP only allows for INT binary I/O access so ADC will not be implemented.
+//select which socket you will use the Flame Click in...
+
+static const int Socket1_int = 420;
+//static const int Socket2_int = 421;
 
 void __gpioOpen(int gpio)
 {
@@ -63,7 +68,7 @@ void __gpioSet(int gpio, int value)
     int fd = open(buf, O_WRONLY);
 
     sprintf(buf, "%d", value);
-    write(fd, buf, 1);
+    write(fd, buf, strlen(buf));
     close(fd);
 }
 
@@ -74,8 +79,10 @@ int __gpioRead(int gpio)
 
     sprintf(buf, "/sys/class/gpio/gpio%d/value", gpio);
     fd = open(buf, O_RDONLY);
-    read(fd, &val, 1);
+    read(fd, buf, 1);
     close(fd);
+    buf[1] = 0x00;
+    val = atoi(buf);
     return val;
 }
 
@@ -83,21 +90,11 @@ int __gpioRead(int gpio)
 
 #define IR_THRESHOLD (0.1)
 
-// Linux pin number to Xilinx pin numbers are weird and have a large
-// base number than can change between different releases of Linux
-#define MIO_BASE    334
-// EMIOs start after MIO and there is a fixed offset of 78 for ZYNQ US+
-#define EMIO_BASE   (MIO_BASE+78)
-
-#define SLOT1_INT   (EMIO_BASE+7) //Interrupt input pin for Slot#1 HD_GPIO_8
-#define SLOT1_AN    0              //ADC input for slot#1 is MIO38_SPIO_SCLK
-#define SLOT2_INT   (EMIO_BASE+14) //HD_GPIO_15
-#define SLOT2_AN    0              //MIO42_SPIO_MISO
-
 #define delay(x) (usleep(x*1000))   //macro to provide ms pauses
+
 void init(void) 
 {
-    __gpioOpen(SLOT1_INT);
+    __gpioOpen(Socket1_int);
 //  open the ADC input
 }
 
@@ -110,7 +107,7 @@ float status(void)
 
 int intStatus(void) 
 {
-    return __gpioRead(SLOT1_INT);
+    return __gpioRead(Socket1_int);
 }
 
 void flame_cb(int state)
@@ -158,6 +155,7 @@ int main(int argc, char *argv[])
     printf("   **    **    for the Flame Click\r\n");
     printf("  ** ==== **\r\n");
     printf("\r\n");
+    printf("Uses Socket #1 as the default.\n\r");
 
     flameptr = open_flamedetect( status, intStatus, init );
     flame_setcallback( flameptr, flame_cb );
@@ -173,7 +171,7 @@ int main(int argc, char *argv[])
         threshold /= 10;
         }
 
-    printf(">setting detection threshold to %.2f\n",threshold);
+    //printf(">setting detection threshold to %.2f\n",threshold);
     while( i++ < run_time ) {
         fstat = flame_status(flameptr);
         if( fstat > threshold )
@@ -189,7 +187,7 @@ int main(int argc, char *argv[])
         }
 
     printf("\r \nDONE...\n");
-    __gpioClose(SLOT1_INT);
+    __gpioClose(Socket1_int);
     close_flamedetect( flameptr );
     exit(EXIT_SUCCESS);
 }
