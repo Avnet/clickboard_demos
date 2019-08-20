@@ -1,36 +1,50 @@
-﻿/* Copyright (c) Microsoft Corporation. All rights reserved.
-   Licensed under the MIT License. */
-
-   /************************************************************************************************
-   Name: AvnetStarterKitReferenceDesign
-   Sphere OS: 19.06
-   This file contains the 'main' function. Program execution begins and ends there
-
-   Authors:
-   Peter Fenn (Avnet Engineering & Technology)
-   Brian Willess (Avnet Engineering & Technology)
-   Rickey Castillo (Avnet AVID Technology)
-
-   Purpose:
-   Using the Avnet Azure Sphere Starter Kit demonstrate the following features
-
-   1. Read ADC parameters(Voltage, Resistance) from Air quality 5 board using the I2C Interface
-   2. Calculate gas concentration using a trendline with data from MiCs-6814 datasheet
-   3. Show gas concentrations on a LCD mini bard
-   4. Read the state of the A and B buttons
-   5. Read BSSID address, Wi-Fi AP SSID, Wi-Fi Frequency
-   *************************************************************************************************
-      Connected application features: When connected to Azure IoT Hub or IoT Central
-   *************************************************************************************************
-   6. Send sensor resistance data to Azure
-   7. Send gas concentration data to Azure
-   8. Send button state data to Azure
-   9. Send BSSID address, Wi-Fi AP SSID, Wi-Fi Frequency data to Azure
-   10. Send the application version string to Azure
-   11. Control user RGB LEDs from the cloud using device twin properties
-   12. Send Application version up as a device twin property
-   	 
-   *************************************************************************************************/
+﻿/**
+  **************************************************************************************************************************************************************************************************
+  *
+  *   Name: AvnetSSphereAirQuality5
+  *   Sphere OS: 19.06
+  *   This file contains the 'main' function. Program execution begins and ends there
+  *   
+  *   Authors:
+  *   Peter Fenn (Avnet Engineering & Technology)
+  *   Brian Willess (Avnet Engineering & Technology)
+  *   Rickey Castillo (Avnet AVID Technology)
+  *
+  *   Purpose:
+  *   Using the Avnet Azure Sphere Starter Kit demonstrate the following features
+  *
+  *   1. Read ADC parameters(Voltage, Resistance) from Air quality 5 board using the I2C Interface
+  *   2. Calculate gas concentration using a trendline with data from MiCs-6814 datasheet
+  *   3. Show gas concentrations on a LCD mini bard
+  *   4. Read the state of the A and B buttons
+  *   5. Read BSSID address, Wi-Fi AP SSID, Wi-Fi Frequency
+  *   *************************************************************************************************
+  *      Connected application features: When connected to Azure IoT Hub or IoT Central
+  *   *************************************************************************************************
+  *   6. Send sensor resistance data to Azure
+  *   7. Send gas concentration data to Azure
+  *   8. Send button state data to Azure
+  *   9. Send BSSID address, Wi-Fi AP SSID, Wi-Fi Frequency data to Azure
+  *   10. Send the application version string to Azure
+  *   11. Control user RGB LEDs from the cloud using device twin properties
+  *   12. Send Application version up as a device twin property
+  *
+  *   Notes:
+  *	  You need to be sure that your Air Quality 5 Click board is the 1.01 HW version otherwise you will need to solder 3 additional resistors (two 1 M ohm and one 15 k ohm).
+  *	  In case you have gotten the 1.00 HW version, solder the 1 M resistor between CO sensor and 3.3 V, 15 k between NO2 sensor and 3.3 V, and 1 M between NH3 sensor and 3.3 V supply.
+  *	  Define R0 in your indoor location, this will be considered as clean air. You can change your R0 modifying lines 19, 20 and 21 in file air_quality_5.h.
+  *   Also, you can modify R0 in real time if you are using an IoT Cetral application.
+  *	  You need to connect Air Quality 5 board to Click number 1 socket and LCD mini to Click number 2 socket
+  *	  This example shows how to get gas concentration data and how to send them to an Azure IoT Central Aplication.
+  *	  To create an IoT Central app follow this tutorial: https://www.element14.com/community/groups/internet-of-things/blog/2019/05/09/avnets-azure-sphere-starter-kit-out-of-box-demo-part-3-of-3.
+  *	  Import the device template from the project folder, and make sure you have uncommented line 5 in build_options.h file.
+  *   If you do not have and LCD Click board or you are not using an IoT Central application, you can see concentration data in Visual Studio debug window.
+  *
+  *   Copyright (c) Microsoft Corporation. All rights reserved.
+  *   Licensed under the MIT License.
+  *
+  **************************************************************************************************************************************************************************************************
+  */
 
 /* Includes ------------------------------------------------------------------*/
 #include <errno.h>
