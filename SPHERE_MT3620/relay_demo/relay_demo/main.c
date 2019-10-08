@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 	Log_Debug("  ** ==== **\r\n");
 	Log_Debug("\r\n");
 	Log_Debug("This demo simply alternates the relays through different\n");
-	Log_Debug("states at a 1 second interval. This demo requires using Socket #1.\r\n");
+	Log_Debug("states at a 1 second interval. This demo requires using Socket #2.\r\n");
 
 	rptr = open_relay(state, init);
 	sleep(1);
