@@ -1,0 +1,22 @@
+{
+  "SchemaVersion": 1,
+  "Name" : "flame_demo",
+  "ComponentId" : "5f19d808-a781-4d88-804d-038a38c221f1",
+  "EntryPoint": "/bin/app",
+  "CmdArgs": [],
+  "Capabilities": {
+    "AllowedConnections": [],
+    "AllowedTcpServerPorts": [],
+    "AllowedUdpServerPorts": [],
+    "Gpio": [
+            "$MT3620_GPIO2",
+            "$MT3620_GPIO42"
+            ],
+    "Uart": [],
+    "I2cMaster": [],
+    "SpiMaster": [],
+    "WifiConfig": false,
+    "NetworkConfig": false,
+    "SystemTime": false
+  }
+}

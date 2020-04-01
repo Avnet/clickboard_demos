@@ -1,0 +1,24 @@
+{
+  "SchemaVersion": 1,
+  "Name": "LCDmini_demo",
+  "ComponentId": "38a5ca47-c21e-4b5b-a111-2510da1e3dd3",
+  "EntryPoint": "/bin/app",
+  "CmdArgs": [],
+  "Capabilities": {
+    "AllowedConnections": [],
+    "AllowedTcpServerPorts": [],
+    "AllowedUdpServerPorts": [],
+    "Gpio": [ 
+         "$MT3620_GPIO1", 
+         "$MT3620_GPIO10", 
+         "$MT3620_GPIO17", 
+         "$MT3620_GPIO43"
+         ],
+    "Uart": [],
+    "I2cMaster": [ "$MT3620_RDB_HEADER4_ISU2_I2C" ],
+    "SpiMaster": [ "$MT3620_RDB_HEADER4_ISU1_SPI" ],
+    "WifiConfig": false,
+    "NetworkConfig": false,
+    "SystemTime": false
+  }
+}

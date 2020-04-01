@@ -1,0 +1,22 @@
+{
+  "SchemaVersion": 1,
+  "Name" : "tof_demo",
+  "ComponentId" : "b9ce68be-70ec-485c-837f-5592f481846c",
+  "EntryPoint": "/bin/app",
+  "CmdArgs": ["-1"],
+  "Capabilities": {
+    "AllowedConnections": [],
+    "AllowedTcpServerPorts": [],
+    "AllowedUdpServerPorts": [],
+    "Gpio": [
+             "$MT3620_GPIO66", 
+             "$MT3620_GPIO67"
+            ],
+    "Uart": [],
+    "I2cMaster": [ "$MT3620_RDB_HEADER4_ISU2_I2C" ],
+    "SpiMaster": [],
+    "WifiConfig": false,
+    "NetworkConfig": false,
+    "SystemTime": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "SchemaVersion": 1,
+  "Name" : "click_demo",
+  "ComponentId" : "e6a97882-1268-4c6e-bba8-a2d1612378e2",
+  "EntryPoint": "/bin/app",
+  "CmdArgs": ["-r 5"],
+  "Capabilities": {
+    "AllowedConnections": [],
+    "AllowedTcpServerPorts": [],
+    "AllowedUdpServerPorts": [],
+    "Gpio": ["$MT3620_GPIO2"], 
+    "Uart": [],
+    "I2cMaster": [ "$MT3620_RDB_HEADER4_ISU2_I2C" ],
+    "SpiMaster": [ "$MT3620_RDB_HEADER4_ISU1_SPI" ],
+    "WifiConfig": false,
+    "NetworkConfig": false,
+    "SystemTime": false
+  }
+}

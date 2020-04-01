@@ -1,0 +1,34 @@
+{
+  "SchemaVersion": 1,
+  "Name": "Avnet-Starter-Kit-reference-V1.0",
+  "ComponentId": "685f13af-25a5-40b2-8dd8-8cbc253ecbd8",
+  "EntryPoint": "/bin/app",
+  "CmdArgs": [ "Avnet-Starter-Kit-reference-V1.0" ],
+  "Capabilities": {
+    "AllowedApplicationConnections": [ "005180BC-402F-4CB3-A662-72937DBCDE47" ],
+    "AllowedConnections": [ "iotc-51557ada-b493-4499-af89-5a67369bdd75.azure-devices.net" ],
+    "AllowedTcpServerPorts": [],
+    "AllowedUdpServerPorts": [],
+    "Gpio": [ 
+            "$MT3620_GPIO0",
+            "$MT3620_GPIO1",
+            "$MT3620_GPIO2",
+            "$MT3620_GPIO4",
+            "$MT3620_GPIO5",
+            "$MT3620_GPIO8",
+            "$MT3620_GPIO9",
+            "$MT3620_GPIO10",
+            "$MT3620_GPIO12",
+            "$MT3620_GPIO13",
+            "$MT3620_GPIO17",
+            "$MT3620_GPIO43"
+            ],
+    "Uart": [],
+    "I2cMaster": [ "$MT3620_RDB_HEADER4_ISU2_I2C" ],
+    "SpiMaster": [ "$MT3620_RDB_HEADER4_ISU1_SPI" ],
+    "WifiConfig": true,
+    "NetworkConfig": false,
+    "SystemTime": false
+  },
+  "ApplicationType": "Default"
+}
