@@ -26,8 +26,8 @@
 #include "../Hardware/mt3620/inc/hw/mt3620.h"
 
 
-#include "max30102.h"
-#include "algorithm_by_RF.h"
+#include <max30102.h>
+#include <algorithm_by_RF.h>
 
 #define PROXIMITY_THRESHOLD  32000
 #define delay(x)             (usleep(x*1000))   //macro to provide ms pauses
