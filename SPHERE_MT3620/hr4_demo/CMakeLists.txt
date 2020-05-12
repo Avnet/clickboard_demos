@@ -9,10 +9,11 @@ azsphere_configure_api(TARGET_API_SET "5")
 
 # set the path to the clickmodule library and Include the click library cmake file
 set(click_path "../../clickmodules/HEARTRATE4") 
-set(click_lib_path "C:/Users/051520/source/repos/AvnetPublicProjects/clickboard_demos/clickmodules/HEARTRATE4")
 
 # Create executable 
 add_executable(${PROJECT_NAME} main.c algorithm_by_RF.c max30102.c) 
+# Need to add ${click_path} algorithm_by_RF.c and max30102.c to the project!!  Then remove them
+# from the line above.
 target_link_libraries(${PROJECT_NAME} applibs pthread gcc_s c)
 target_include_directories(${PROJECT_NAME} PUBLIC ${click_path})
 target_compile_options(${PROJECT_NAME} PRIVATE -w)
