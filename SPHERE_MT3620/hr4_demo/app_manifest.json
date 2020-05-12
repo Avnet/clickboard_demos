@@ -1,0 +1,21 @@
+{
+  "SchemaVersion": 1,
+  "Name" : "hr4_demo",
+  "ComponentId" : "0238e7ab-ec4e-46dc-9400-b45a12b15024",
+  "EntryPoint": "/bin/app",
+  "CmdArgs": [],
+  "Capabilities": {
+    "AllowedConnections": [],
+    "AllowedTcpServerPorts": [],
+    "AllowedUdpServerPorts": [],
+    "Gpio": [
+            "$MT3620_GPIO2"
+            ],
+    "Uart": [],
+    "I2cMaster": [ "$MT3620_RDB_HEADER4_ISU2_I2C" ],
+    "SpiMaster": [],
+    "WifiConfig": false,
+    "NetworkConfig": false,
+    "SystemTime": false
+  }
+}
