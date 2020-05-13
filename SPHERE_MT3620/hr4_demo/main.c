@@ -128,12 +128,17 @@ int main(int argc, char *argv[])
 
 	init();
 	maxim_max30102_i2c_setup(read_i2c, write_i2c);
-	maxim_max30102_init();
-
-	Log_Debug("\nRunning test for %d seconds.\n", run_time);
 	Log_Debug("HeartRate Click Revision: 0x%02X\n", max30102_get_revision());
 	Log_Debug("HeartRate Click Part ID:  0x%02X\n\n", max30102_get_part_id());
 	Log_Debug("Begin ... Place your finger on the sensor\n\n");
+	maxim_max30102_init();
+
+	while (!max30102_finger_detected())
+		sleep(.5); 
+	Log_Debug("Finger detected!\n");
+
+	Log_Debug("\nRunning test for %d seconds.\n", run_time);
+	maxim_max30102_write_reg(REG_PROX_INT_THRESH, 0);
 
 	gettimeofday(&time_start, NULL);
 	time_now = time_start;
@@ -145,14 +150,13 @@ int main(int argc, char *argv[])
 		//read BUFFER_SIZE samples, and determine the signal range
 		GPIO_Value_Type intVal;
 		for (i = 0; i < BUFFER_SIZE; i++) {
-			do {
-				GPIO_GetValue(intPinFd, &intVal);
-			} while (intVal == 1);                               //wait until the interrupt pin asserts
+			while ( !max30102_data_available() )
+				/* wait here */;
 
-			maxim_max30102_read_fifo((aun_red_buffer + i), (aun_ir_buffer + i));   //read from MAX30102 FIFO
-			Log_Debug("*");
+			maxim_max30102_read_fifo(&aun_red_buffer[i], &aun_ir_buffer[i]);   //read from MAX30102 FIFO
+			//Log_Debug("%d: redbuff=%lu, irbuff=%lu\n", i, aun_red_buffer[i], aun_ir_buffer[i]);
 		}
-		Log_Debug("\n");
+
 		//calculate heart rate and SpO2 after BUFFER_SIZE samples (ST seconds of samples) using Robert's method
 		rf_heart_rate_and_oxygen_saturation(aun_ir_buffer, BUFFER_SIZE, aun_red_buffer, &n_spo2, &ch_spo2_valid, &n_heart_rate, &ch_hr_valid, &ratio, &correl);
 
@@ -162,8 +166,8 @@ int main(int argc, char *argv[])
 			average_spo2 += n_spo2;
 			nbr_readings++;
 		}
-		else
-			Log_Debug("ch_hr_valid=%d, ch_spo2_valid=%d\n", ch_hr_valid, ch_spo2_valid);
+		//else
+		//	Log_Debug("ch_hr_valid=%d, ch_spo2_valid=%d\n", ch_hr_valid, ch_spo2_valid);
 
 		gettimeofday(&time_now, NULL);
 	}
