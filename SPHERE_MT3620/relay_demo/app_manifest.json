@@ -8,10 +8,7 @@
     "AllowedConnections": [],
     "AllowedTcpServerPorts": [],
     "AllowedUdpServerPorts": [],
-    "Gpio": [
-         "$MT3620_GPIO1", 
-         "$MT3620_GPIO35"
-            ],
+    "Gpio": [1, 35],
     "Uart": [],
     "I2cMaster": [],
     "SpiMaster": [],
